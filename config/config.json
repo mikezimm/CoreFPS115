@@ -1,0 +1,18 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "fps-core-115-banner-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/fpsCore115Banner/FpsCore115BannerWebPart.js",
+          "manifest": "./src/webparts/fpsCore115Banner/FpsCore115BannerWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "FpsCore115BannerWebPartStrings": "lib/webparts/fpsCore115Banner/loc/{locale}.js"
+  }
+}
