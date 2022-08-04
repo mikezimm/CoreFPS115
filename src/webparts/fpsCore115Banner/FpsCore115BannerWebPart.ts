@@ -229,9 +229,9 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
    */
    renderCustomStyles( this as any, this.domElement, this.properties, false );
 
-   let exportProps = buildExportProps( this.properties , this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl );
+   const exportProps = buildExportProps( this.properties , this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl );
 
-   let bannerProps: IWebpartBannerProps = mainWebPartRenderBannerSetup( this.displayMode, this.beAReader, this.FPSUser, repoLink.desc, 
+   const bannerProps: IWebpartBannerProps = mainWebPartRenderBannerSetup( this.displayMode, this.beAReader, this.FPSUser, repoLink.desc, 
        this.properties, repoLink, exportProps, strings , this.domElement.clientWidth, this.context, this.modifyBannerTitle, 
        this.forceBanner, this.properties.enableExpandoramic );
 
@@ -367,17 +367,21 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
     protected async onPropertyPaneFieldChanged(propertyPath: string, oldValue: any, newValue: any) {
       super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
   
-      await validateDocumentationUrl ( this.properties, propertyPath , newValue );
+      try {
+        await validateDocumentationUrl ( this.properties, propertyPath , newValue );
+      } catch(e) {
+        alert('unalbe to validateDocumentationUrl' );
+      }
+
   
       this.properties.webpartHistory = updateWebpartHistoryV2( this.properties.webpartHistory , propertyPath , newValue, this.context.pageContext.user.displayName, [], [] );
   
       if ( propertyPath === 'fpsImportProps' ) {
   
-        updateFpsImportProps( this.properties, importBlockProps, propertyPath, newValue,
+        this.importErrorMessage = updateFpsImportProps( this.properties, importBlockProps, propertyPath, newValue,
           this.context.propertyPane.refresh,
           this.onPropertyPaneConfigurationStart,
           this.exitPropPaneChanged,
-          this.importErrorMessage, 
         );
   
        } else if ( propertyPath === 'bannerStyle' || propertyPath === 'bannerCmdStyle' )  {

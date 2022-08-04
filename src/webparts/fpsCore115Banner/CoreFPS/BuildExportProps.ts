@@ -51,9 +51,6 @@ import { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changef
 import { changeBannerBasics, changeBannerNav, changeBannerTheme, changeBannerUtility,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
 import { changePinMe,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
 
-import { changeRelated1, changeRelated2, changePageLinks,  } from '@mikezimm/npmfunctions/dist/RelatedItems/IRelatedWebPartProps';
-import { changeHeadingStyleProps,  } from '@mikezimm/npmfunctions/dist/HeadingCSS/FPSHeadingFunctions';
-
 
 // import { ILoadPerformanceALVFM, IPerformanceOp } from './components/Performance/IFpsCore115BannerWebPartProps';
 
@@ -99,7 +96,7 @@ import { changeHeadingStyleProps,  } from '@mikezimm/npmfunctions/dist/HeadingCS
 // import { } from '../IFpsCore115BannerWebPartProps';
 
  export function buildExportProps( wpProps : IFpsCore115BannerWebPartProps, wpInstanceID: string, currentWeb: string, ) {
-    let exportStructure :any = {};
+  const exportStructure :any = {};
     // let wpInstanceIDSplit = wpInstanceID.split('|');
     // exportStructure.wpInstanceID = [ wpInstanceIDSplit[0], wpInstanceIDSplit[1], wpInstanceIDSplit[3]].join(' ~ ');
 
@@ -122,7 +119,7 @@ import { changeHeadingStyleProps,  } from '@mikezimm/npmfunctions/dist/HeadingCS
 
     exportStructure.fpsOptions2 = changefpsOptions2;
 
-    let exportObject = createExportObject( exportStructure, wpProps, exportIgnoreProps, false );
+    const exportObject = createExportObject( exportStructure, wpProps, exportIgnoreProps, false );
 
     console.log('Exportable Props:', exportObject );
     return exportObject;
@@ -130,7 +127,7 @@ import { changeHeadingStyleProps,  } from '@mikezimm/npmfunctions/dist/HeadingCS
   }
 
   export function buildFPSAnalyticsProps( wpProps : IFpsCore115BannerWebPartProps, wpInstanceID: string, currentWeb: string, ) {
-    let exportStructure :any = {};
+    const exportStructure :any = {};
 
     exportStructure.wpInstanceID = wpInstanceID;
     exportStructure.currentWeb = currentWeb;
@@ -151,7 +148,7 @@ import { changeHeadingStyleProps,  } from '@mikezimm/npmfunctions/dist/HeadingCS
 
     exportStructure.fpsOptions2 = changefpsOptions2;
 
-    let exportObject = createExportObject( exportStructure, wpProps, exportIgnoreProps, false );
+    const exportObject = createExportObject( exportStructure, wpProps, exportIgnoreProps, false );
 
     console.log('Exportable Props:', exportObject );
     return exportObject;

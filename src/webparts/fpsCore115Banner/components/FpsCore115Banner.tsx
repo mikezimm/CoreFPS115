@@ -15,11 +15,6 @@ const consolePrefix: string = 'fpsconsole: FpsCore115Banner';
 
 export default class FpsCore115Banner extends React.Component<IFpsCore115BannerProps, IFpsCore115BannerState> {
 
-  
-  private _updatePinState( newValue ) {
-    this.setState({ pinState: newValue, });
-}
-
  /***
 *     .o88b.  .d88b.  d8b   db .d8888. d888888b d8888b. db    db  .o88b. d888888b  .d88b.  d8888b. 
 *    d8P  Y8 .8P  Y8. 888o  88 88'  YP `~~88~~' 88  `8D 88    88 d8P  Y8 `~~88~~' .8P  Y8. 88  `8D 
@@ -47,7 +42,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
   public componentDidMount() {
     if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidMount` );
 
-    let analyticsWasExecuted = saveViewAnalytics( 'FPS Core115 Banner View', 'didMount' , this.props, this.state.analyticsWasExecuted );
+    const analyticsWasExecuted = saveViewAnalytics( 'FPS Core115 Banner View', 'didMount' , this.props, this.state.analyticsWasExecuted );
 
     if ( this.state.analyticsWasExecuted !==  analyticsWasExecuted ) {
       this.setState({ analyticsWasExecuted: analyticsWasExecuted });
@@ -90,14 +85,14 @@ public componentDidUpdate(prevProps){
       userDisplayName
     } = this.props;
 
-    let devHeader = this.state.showDevHeader === true ? <div><b>Props: </b> { 'this.props.lastPropChange' + ', ' + 'this.props.lastPropDetailChange' } - <b>State: lastStateChange: </b> { this.state.lastStateChange  } </div> : null ;
+    const devHeader = this.state.showDevHeader === true ? <div><b>Props: </b> { `this.props.lastPropChange , this.props.lastPropDetailChange` } - <b>State: lastStateChange: </b> { this.state.lastStateChange  } </div> : null ;
 
     const Banner = <FetchBanner 
       parentProps={ this.props }
       parentState={ this.state }
       updatePinState = { this._updatePinState.bind(this) }
       pinState = { this.state.pinState }
-    ></FetchBanner>;
+    />;
 
     return (
       <section className={`${styles.fpsCore115Banner} ${hasTeamsContext ? styles.teams : ''}`}>
@@ -128,4 +123,9 @@ public componentDidUpdate(prevProps){
       </section>
     );
   }
+
+  private _updatePinState( newValue ) {
+    this.setState({ pinState: newValue, });
+}
+
 }
