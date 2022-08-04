@@ -25,7 +25,7 @@ module.exports = {
 
     // "react/self-closing-comp": "off",  // Generally keep on and just clean up the code
     "@typescript-eslint/no-unused-vars": "off", // Generally keep on and just clean up the code
-    "react/no-unescaped-entities": "off", // Generally keep on should just fix
+    // "react/no-unescaped-entities": "off", // Generally keep on should just fix
     // "@typescript-eslint/explicit-function-return-type": "off", // Could help improve typing errors
     // "prefer-const": "off",  // Sometimes may apply
     "@typescript-eslint/member-ordering": "off",   // Preferance?
