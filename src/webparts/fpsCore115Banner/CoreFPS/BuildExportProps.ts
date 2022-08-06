@@ -46,10 +46,10 @@
 import { IFpsCore115BannerWebPartProps } from '../IFpsCore115BannerWebPartProps';
 import { exportIgnoreProps, importBlockProps, } from '../IFpsCore115BannerWebPartProps';
 
-import { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2, exportIgnorePropsFPS, importBlockPropsFPS, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+import { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2, exportIgnorePropsFPS, importBlockPropsFPS, } from '../fpsReferences';
 
-import { changeBannerBasics, changeBannerNav, changeBannerTheme, changeBannerUtility,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
-import { changePinMe,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+import { changeBannerBasics, changeBannerNav, changeBannerTheme, changeBannerUtility,  } from '../fpsReferences';
+import { changePinMe,  } from '../fpsReferences';
 
 
 // import { ILoadPerformanceALVFM, IPerformanceOp } from './components/Performance/IFpsCore115BannerWebPartProps';

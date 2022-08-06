@@ -1,10 +1,10 @@
 // import { IPropertyFieldGroupOrPerson } from "@pnp/spfx-property-controls/lib/PropertyFieldPeoplePicker";
 // import { IFpsCore115BannerWebPartProps } from "../IFpsCore115BannerWebPartProps";
 
-import { IPreConfigSettings, IAllPreConfigSettings } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfigFunctions';
-import { PresetFPSBanner } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfiguredConstants';
-import { encrptMeOriginalTest } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/logTest';
-import { createBannerStyleStr } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/defaults";
+import { IPreConfigSettings, IAllPreConfigSettings } from '../fpsReferences';
+import { PresetFPSBanner } from '../fpsReferences';
+import { encrptMeOriginalTest } from '../fpsReferences';
+import { createBannerStyleStr } from "../fpsReferences";
 
 //Specific to this web part
 export const WPForceEverywhere : IPreConfigSettings = {
@@ -23,7 +23,7 @@ export const WPPresetEverywhere : IPreConfigSettings = {
     source: 'WPPresetEverywhere',
     location: '*',
     props: {
-        bannerTitle: "FPS Core 1.15 Banner Default",
+        bannerTitle: "FPS Core 1.14 Banner Default",
         defPinState: 'disabled',
     }
 };

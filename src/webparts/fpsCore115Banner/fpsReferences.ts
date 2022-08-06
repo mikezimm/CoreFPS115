@@ -159,3 +159,68 @@ export { validateDocumentationUrl,  } from '@mikezimm/npmfunctions/dist/Links/Va
 
 // export { saveViewAnalytics } from './CoreFPS/Analytics';
 
+export { importBlockPropsFPS } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+export { IMinWPBannerProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
+export { IMinBannerUIProps, IMinPinMeProps, IMinPandoramicProps, IMinBannerThemeProps, IMinCustomHelpProps, IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
+
+
+
+//Added from WebPartRenderBanner
+
+export { IBuildBannerSettings , buildBannerProps, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+
+export { verifyAudienceVsUser } from '@mikezimm/npmfunctions/dist/Services/Users/CheckPermissions';
+
+export { visitorPanelInfo } from '@mikezimm/npmfunctions/dist/CoreFPS/VisitorPanelComponent';
+
+
+// from src\webparts\fpsCore115Banner\CoreFPS\PropPaneHelp.tsx
+
+export { gitRepoALVFinManSmall } from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
+
+export { defaultBannerCommandStyles, } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/defaults";
+
+export { BannerHelp, FPSBasicHelp, FPSExpandHelp, ImportHelp, SinglePageAppHelp, VisitorHelp, PinMeHelp, SitePresetsInfo } from '@mikezimm/npmfunctions/dist/PropPaneHelp/FPSCommonOnNpm';
+
+export {HandleBarReplacements } from '@mikezimm/npmfunctions/dist/Services/Strings/handleBars';
+
+
+// from src\webparts\fpsCore115Banner\CoreFPS\PreConfiguredSettings.ts
+export { IPreConfigSettings, IAllPreConfigSettings } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfigFunctions';
+export { PresetFPSBanner } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfiguredConstants';
+export { encrptMeOriginalTest } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/logTest';
+export { createBannerStyleStr } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/defaults";
+
+
+//Copied from src\webparts\fpsCore115Banner\CoreFPS\FetchBannerElement.tsx
+export { FPSPinMe, IPinMeState, getDefaultFPSPinState, IPinStatus } from '@mikezimm/npmfunctions/dist/Services/DOM/PinMe/FPSPinMenu';
+
+// export WebpartBanner from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/banner/onLocal/component";
+export { IBannerPages } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
+
+
+// from src\webparts\fpsCore115Banner\CoreFPS\BuildExportProps.ts
+
+export { createExportObject, } from '@mikezimm/npmfunctions/dist/Services/PropPane/ExportFunctions';
+
+export { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2, exportIgnorePropsFPS, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+
+export { changeBannerBasics, changeBannerNav, changeBannerTheme, changeBannerUtility,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+export { changePinMe,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+
+
+// from src\webparts\fpsCore115Banner\components\IFpsCore115BannerProps.ts
+export { IFPSCorePinMeReactComponentProps, IFPSCorePinMeReactComponentState } from '@mikezimm/npmfunctions/dist/CoreFPS/ReactComponentProps';
+
+// from src\webparts\fpsCore115Banner\components\HelpPanel\About.tsx
+
+export { IHelpTable, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/banner/SinglePage/ISinglePageProps';
+
+export { createAboutRow } from '@mikezimm/npmfunctions/dist/CoreFPS/BannerPageMisc';
+
+
+// from src\webparts\fpsCore115Banner\components\HelpPanel\AllContent.ts
+
+export { tricksTable } from '@mikezimm/npmfunctions/dist/CoreFPS/ReusaableTricks';
+
+export { convertIssuesMarkdownStringToSpan } from '@mikezimm/npmfunctions/dist/Elements/Markdown';

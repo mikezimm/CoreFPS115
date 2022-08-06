@@ -5,19 +5,19 @@ import { escape } from '@microsoft/sp-lodash-subset';
 
 import { Pivot, PivotItem, PivotLinkFormat, PivotLinkSize,} from 'office-ui-fabric-react/lib/Pivot';
 
-import { gitRepoALVFinManSmall } from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
+import { gitRepoALVFinManSmall } from '../fpsReferences';
 
-import { defaultBannerCommandStyles, } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/defaults";
+import { defaultBannerCommandStyles, } from "../fpsReferences";
 
 import ReactJson from "react-json-view";
 // import { FontWeights } from 'office-ui-fabric-react';
-import { BannerHelp, FPSBasicHelp, FPSExpandHelp, ImportHelp, SinglePageAppHelp, VisitorHelp, PinMeHelp, SitePresetsInfo } from '@mikezimm/npmfunctions/dist/PropPaneHelp/FPSCommonOnNpm';
+import { BannerHelp, FPSBasicHelp, FPSExpandHelp, ImportHelp, SinglePageAppHelp, VisitorHelp, PinMeHelp, SitePresetsInfo } from '../fpsReferences';
 
-import {HandleBarReplacements } from '@mikezimm/npmfunctions/dist/Services/Strings/handleBars';
+import {HandleBarReplacements } from '../fpsReferences';
 
 require('@mikezimm/npmfunctions/dist/PropPaneHelp/PropPanelHelp.css');
 
-import { ISitePreConfigProps, } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfigFunctions';
+import { ISitePreConfigProps, } from '../fpsReferences';
 
 const SampleRelatedInfoProps =         {
   description: 'Standards',

@@ -166,9 +166,9 @@ import * as links from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
 
 // import { saveViewAnalytics } from './CoreFPS/Analytics';
 
-// import { importBlockProps,  } from './references';
+// import { importBlockProps,  } from './fpsReferences';
 
-import * as fps from './references';
+import * as fps from './fpsReferences';
 
 /***
  *     .o88b. .d8888. .d8888.      d8888b. d88888b  .d88b.  db    db d888888b d8888b. d88888b .d8888. 

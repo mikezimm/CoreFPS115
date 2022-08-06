@@ -6,10 +6,10 @@ import { IFpsCore115BannerProps, IFpsCore115BannerState } from '../components/IF
 import { Icon, } from 'office-ui-fabric-react/lib/Icon';
 import { DisplayMode } from '@microsoft/sp-core-library';
 
-import { FPSPinMe, IPinMeState, getDefaultFPSPinState, IPinStatus } from '@mikezimm/npmfunctions/dist/Services/DOM/PinMe/FPSPinMenu';
+import { FPSPinMe, IPinMeState, getDefaultFPSPinState, IPinStatus } from '../fpsReferences';
 
 import WebpartBanner from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/banner/onLocal/component";
-import { IBannerPages } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
+import { IBannerPages } from '../fpsReferences';
 
 import { getWebPartHelpElement } from '../CoreFPS/PropPaneHelp';
 

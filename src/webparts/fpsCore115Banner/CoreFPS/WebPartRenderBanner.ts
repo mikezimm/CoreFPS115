@@ -1,19 +1,19 @@
 import { DisplayMode } from "@microsoft/sp-core-library";
 
-import { IMinWPBannerProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
+import { IMinWPBannerProps } from "../fpsReferences";
 
-import { IWebpartBannerProps } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
+import { IWebpartBannerProps } from '../fpsReferences';
 
-import { IBuildBannerSettings , buildBannerProps, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
-import { IRepoLinks } from "@mikezimm/npmfunctions/dist/Links/CreateLinks";
+import { IBuildBannerSettings , buildBannerProps, } from '../fpsReferences';
+import { IRepoLinks } from "../fpsReferences";
 
 import * as links from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
 
-import { verifyAudienceVsUser } from '@mikezimm/npmfunctions/dist/Services/Users/CheckPermissions';
+import { verifyAudienceVsUser } from '../fpsReferences';
 
-import { visitorPanelInfo } from '@mikezimm/npmfunctions/dist/CoreFPS/VisitorPanelComponent';
+import { visitorPanelInfo } from '../fpsReferences';
 
-import { IFPSUser } from "@mikezimm/npmfunctions/dist/Services/Users/IUserInterfaces";
+import { IFPSUser } from "../fpsReferences";
 import { WebPartContext } from "@microsoft/sp-webpart-base";
 
 export function mainWebPartRenderBannerSetup( 

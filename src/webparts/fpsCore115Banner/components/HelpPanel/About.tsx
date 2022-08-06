@@ -1,11 +1,11 @@
 import * as React from 'react';
 
 //import { IHelpTableRow, IHelpTable, IPageContent, ISinglePageProps } from '../Component/ISinglePageProps';
-import { IHelpTable, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/banner/SinglePage/ISinglePageProps';
+import { IHelpTable, } from '../../fpsReferences';
 
-import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
+import { IRepoLinks } from '../../fpsReferences';
 
-import { createAboutRow } from '@mikezimm/npmfunctions/dist/CoreFPS/BannerPageMisc';
+import { createAboutRow } from '../../fpsReferences';
 
 export const panelVersionNumber = '2022-07-22 -  1.0.0.01'; //Added to show in panel
 

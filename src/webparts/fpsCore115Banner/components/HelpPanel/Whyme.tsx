@@ -4,12 +4,11 @@ import * as React from 'react';
 
 import * as links from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
 
-import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
+import { IHelpTable, } from '../../fpsReferences';
 
-import { convertIssuesMarkdownStringToSpan } from '@mikezimm/npmfunctions/dist/Elements/Markdown';
+import { IRepoLinks } from '../../fpsReferences';
 
-//import { IHelpTableRow, IHelpTable, IPageContent, ISinglePageProps } from '../Component/ISinglePageProps';
-import { IHelpTable } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/banner/SinglePage/ISinglePageProps';
+import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
 export function whyContent( repoLinks: IRepoLinks ) {
 

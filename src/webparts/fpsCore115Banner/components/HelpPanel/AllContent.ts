@@ -1,9 +1,9 @@
 
 
-import { IWebpartBannerProps } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
-import { IBannerPages } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
+import { IWebpartBannerProps } from '../../fpsReferences';
+import { IBannerPages } from '../../fpsReferences';
 
-import { tricksTable } from '@mikezimm/npmfunctions/dist/CoreFPS/ReusaableTricks';
+import { tricksTable } from '../../fpsReferences';
 
 import { aboutTable } from './About';
 import { advancedContent } from './Advanced';
