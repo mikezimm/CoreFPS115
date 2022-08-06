@@ -16,7 +16,7 @@ module.exports = {
     "@typescript-eslint/naming-convention": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
 
-    "react/jsx-no-target-blank": "off",  //only applies to old browsers
+    "react/jsx-no-target-blank": "off",  //only applies to old browsers - https://github.com/jsx-eslint/eslint-plugin-react/blob/master/docs/rules/jsx-no-target-blank.md#when-to-override-it
     // "no-useless-concat": "off",
     // "react/jsx-key": "off",
 
@@ -29,7 +29,6 @@ module.exports = {
     // "@typescript-eslint/explicit-function-return-type": "off", // Could help improve typing errors
     // "prefer-const": "off",  // Sometimes may apply
     "@typescript-eslint/member-ordering": "off",   // Preferance?
-
 
   }
 };

@@ -43,9 +43,9 @@ import { IFpsCore115BannerWebPartProps } from './IFpsCore115BannerWebPartProps';
  *    USED IN PRESETTING PROPS
  */
 
-import { applyPresetCollectionDefaults } from '@mikezimm/npmfunctions/dist/PropPaneHelp/ApplyPresets';
-import { ISitePreConfigProps, } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfigFunctions';
-import { PreConfiguredProps } from './CoreFPS/PreConfiguredSettings';
+// import { applyPresetCollectionDefaults } from '@mikezimm/npmfunctions/dist/PropPaneHelp/ApplyPresets';
+// import { ISitePreConfigProps, } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfigFunctions';
+// import { PreConfiguredProps } from './CoreFPS/PreConfiguredSettings';
 
 
 /***
@@ -59,16 +59,16 @@ import { PreConfiguredProps } from './CoreFPS/PreConfiguredSettings';
  *     USED FIRST IN ONINIT
  */
 
-import { webpartInstance, } from '@mikezimm/npmfunctions/dist/Services/DOM/FPSDocument';
-// import { getUrlVars } from '@mikezimm/npmfunctions/dist/Services/Logging/LogFunctions';
+// import { webpartInstance, } from '@mikezimm/npmfunctions/dist/Services/DOM/FPSDocument';
+// // import { getUrlVars } from '@mikezimm/npmfunctions/dist/Services/Logging/LogFunctions';
 
-import { IFPSUser } from '@mikezimm/npmfunctions/dist/Services/Users/IUserInterfaces';
-import { getFPSUser } from '@mikezimm/npmfunctions/dist/Services/Users/FPSUser';
+// import { IFPSUser } from '@mikezimm/npmfunctions/dist/Services/Users/IUserInterfaces';
+// import { getFPSUser } from '@mikezimm/npmfunctions/dist/Services/Users/FPSUser';
 
 import * as links from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
-import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
+// import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
 
-export const repoLink: IRepoLinks = links.gitRepoCoreFPS115Small;
+// export const repoLink: IRepoLinks = links.gitRepoCoreFPS115Small;
 
 
 /***
@@ -82,9 +82,9 @@ export const repoLink: IRepoLinks = links.gitRepoCoreFPS115Small;
  *    USED FOR STYLES
  */
 
-import { expandoOnInit } from '@mikezimm/npmfunctions/dist/Services/DOM/Expando/WebPartOnInit';
-import { renderCustomStyles } from '@mikezimm/npmfunctions/dist/WebPartFunctions/MainWebPartStyleFunctions';
-import { updateBannerThemeStyles } from '@mikezimm/npmfunctions/dist/WebPartFunctions/BannerThemeFunctions';
+// import { expandoOnInit } from '@mikezimm/npmfunctions/dist/Services/DOM/Expando/WebPartOnInit';
+// import { renderCustomStyles } from '@mikezimm/npmfunctions/dist/WebPartFunctions/MainWebPartStyleFunctions';
+// import { updateBannerThemeStyles } from '@mikezimm/npmfunctions/dist/WebPartFunctions/BannerThemeFunctions';
 
 
 /***
@@ -98,8 +98,8 @@ import { updateBannerThemeStyles } from '@mikezimm/npmfunctions/dist/WebPartFunc
  *     USED FOR WEB PART HISTORY
  */
 
-import { updateWebpartHistoryV2,  } from '@mikezimm/npmfunctions/dist/Services/PropPane/WebPartHistory/Functions';
-import { getWebPartHistoryOnInit } from '@mikezimm/npmfunctions/dist/Services/PropPane/WebPartHistory/OnInit';
+// import { updateWebpartHistoryV2,  } from '@mikezimm/npmfunctions/dist/Services/PropPane/WebPartHistory/Functions';
+// import { getWebPartHistoryOnInit } from '@mikezimm/npmfunctions/dist/Services/PropPane/WebPartHistory/OnInit';
 
 
 /***
@@ -113,9 +113,9 @@ import { getWebPartHistoryOnInit } from '@mikezimm/npmfunctions/dist/Services/Pr
  *     USED FOR CREATING BANNER
  */
 
-import { IWebpartBannerProps } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
-import { mainWebPartRenderBannerSetup } from './CoreFPS/WebPartRenderBanner';
-import { buildExportProps, buildFPSAnalyticsProps } from './CoreFPS/BuildExportProps';
+// import { IWebpartBannerProps } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
+// import { mainWebPartRenderBannerSetup } from './CoreFPS/WebPartRenderBanner';
+// import { buildExportProps, buildFPSAnalyticsProps } from './CoreFPS/BuildExportProps';
 
 /***
  *    d8888b. d8888b.  .d88b.  d8888b.       d888b  d8888b.  .d88b.  db    db d8888b. .d8888. 
@@ -128,12 +128,12 @@ import { buildExportProps, buildFPSAnalyticsProps } from './CoreFPS/BuildExportP
  *    USED FOR PROPERTY PANE GROUPS
  */
 
-import { WebPartInfoGroup, } from '@mikezimm/npmfunctions/dist/Services/PropPane/zReusablePropPane';
-import { FPSOptionsGroupBasic, } from '@mikezimm/npmfunctions/dist/Services/PropPane/FPSOptionsGroup3';
-import { FPSBanner3BasicGroup,FPSBanner3NavGroup, FPSBanner3ThemeGroup } from '@mikezimm/npmfunctions/dist/Services/PropPane/FPSOptionsGroup3';
-import { FPSBanner3VisHelpGroup } from '@mikezimm/npmfunctions/dist/CoreFPS/FPSOptionsGroupVisHelp';
-import { FPSPinMePropsGroup } from '@mikezimm/npmfunctions/dist/Services/DOM/PinMe/FPSOptionsGroupPinMe';
-import { FPSOptionsExpando, } from '@mikezimm/npmfunctions/dist/Services/DOM/Expando/FPSOptionsExpando'; //expandAudienceChoicesAll
+// import { WebPartInfoGroup, } from '@mikezimm/npmfunctions/dist/Services/PropPane/zReusablePropPane';
+// import { FPSOptionsGroupBasic, } from '@mikezimm/npmfunctions/dist/Services/PropPane/FPSOptionsGroup3';
+// import { FPSBanner3BasicGroup,FPSBanner3NavGroup, FPSBanner3ThemeGroup } from '@mikezimm/npmfunctions/dist/Services/PropPane/FPSOptionsGroup3';
+// import { FPSBanner3VisHelpGroup } from '@mikezimm/npmfunctions/dist/CoreFPS/FPSOptionsGroupVisHelp';
+// import { FPSPinMePropsGroup } from '@mikezimm/npmfunctions/dist/Services/DOM/PinMe/FPSOptionsGroupPinMe';
+// import { FPSOptionsExpando, } from '@mikezimm/npmfunctions/dist/Services/DOM/Expando/FPSOptionsExpando'; //expandAudienceChoicesAll
 
 
 /***
@@ -147,10 +147,10 @@ import { FPSOptionsExpando, } from '@mikezimm/npmfunctions/dist/Services/DOM/Exp
  *    USED for IMPORTING and EXPORTING
  */
 
-import { importBlockProps, } from './IFpsCore115BannerWebPartProps';
-import { updateFpsImportProps, FPSImportPropsGroup } from '@mikezimm/npmfunctions/dist/Services/PropPane/ImportFunctions';
-import { refreshBannerStylesOnPropChange,  } from '@mikezimm/npmfunctions/dist/WebPartFunctions/BannerThemeFunctions';
-import { validateDocumentationUrl,  } from '@mikezimm/npmfunctions/dist/Links/ValidateLinks';
+// import { importBlockProps, } from './IFpsCore115BannerWebPartProps';
+// import { updateFpsImportProps, FPSImportPropsGroup } from '@mikezimm/npmfunctions/dist/Services/PropPane/ImportFunctions';
+// import { refreshBannerStylesOnPropChange,  } from '@mikezimm/npmfunctions/dist/WebPartFunctions/BannerThemeFunctions';
+// import { validateDocumentationUrl,  } from '@mikezimm/npmfunctions/dist/Links/ValidateLinks';
 
 
 /***
@@ -166,6 +166,9 @@ import { validateDocumentationUrl,  } from '@mikezimm/npmfunctions/dist/Links/Va
 
 // import { saveViewAnalytics } from './CoreFPS/Analytics';
 
+// import { importBlockProps,  } from './references';
+
+import * as fps from './references';
 
 /***
  *     .o88b. .d8888. .d8888.      d8888b. d88888b  .d88b.  db    db d888888b d8888b. d88888b .d8888. 
@@ -191,10 +194,10 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
 
     //Common FPS variables
 
-    private sitePresets : ISitePreConfigProps = null;
+    private sitePresets : fps.ISitePreConfigProps = null;
     private trickyApp = 'FPS Core115';
-    private wpInstanceID: any = webpartInstance( this.trickyApp );
-    private FPSUser: IFPSUser = null;
+    private wpInstanceID: any = fps.webpartInstance( this.trickyApp );
+    private FPSUser: fps.IFPSUser = null;
   
     //For FPS Banner
     private forceBanner = true ;
@@ -227,12 +230,12 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
    *                                                                                                  
    *           Source:   PivotTiles 1.5.2.6                                                                                
    */
-   renderCustomStyles( this as any, this.domElement, this.properties, false );
+   fps.renderCustomStyles( this as any, this.domElement, this.properties, false );
 
-   const exportProps = buildExportProps( this.properties , this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl );
+   const exportProps = fps.buildExportProps( this.properties , this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl );
 
-   const bannerProps: IWebpartBannerProps = mainWebPartRenderBannerSetup( this.displayMode, this.beAReader, this.FPSUser, repoLink.desc, 
-       this.properties, repoLink, exportProps, strings , this.domElement.clientWidth, this.context, this.modifyBannerTitle, 
+   const bannerProps: fps.IWebpartBannerProps = fps.mainWebPartRenderBannerSetup( this.displayMode, this.beAReader, this.FPSUser, fps.repoLink.desc, 
+       this.properties, fps.repoLink, exportProps, strings , this.domElement.clientWidth, this.context, this.modifyBannerTitle, 
        this.forceBanner, this.properties.enableExpandoramic );
 
 
@@ -255,7 +258,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
         displayMode: this.displayMode,
 
         // saveLoadAnalytics: this.saveLoadAnalytics.bind(this),
-        FPSPropsObj: buildFPSAnalyticsProps( this.properties, this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl ),
+        FPSPropsObj: fps.buildFPSAnalyticsProps( this.properties, this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl ),
 
         //Banner related props
         errMessage: 'any',
@@ -294,22 +297,22 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
      */
 
       //NEED TO APPLY THIS HERE as well as follow-up in render for it to not visibly change
-      this.sitePresets = applyPresetCollectionDefaults( this.sitePresets, PreConfiguredProps, this.properties, this.context.pageContext.web.serverRelativeUrl ) ;
+      this.sitePresets = fps.applyPresetCollectionDefaults( this.sitePresets, fps.PreConfiguredProps, this.properties, this.context.pageContext.web.serverRelativeUrl ) ;
 
       //This indicates if its SPA, Teams etc.... always keep.
       this.properties.pageLayout =  this.context['_pageLayoutType']?this.context['_pageLayoutType'] : this.context['_pageLayoutType'];
       // this.urlParameters = getUrlVars();
 
-      this.FPSUser = getFPSUser( this.context as any, links.trickyEmails, this.trickyApp ) ;
+      this.FPSUser = fps.getFPSUser( this.context as any, links.trickyEmails, this.trickyApp ) ;
       console.log( 'FPSUser: ', this.FPSUser );
 
-      expandoOnInit( this.properties, this.context.domElement, this.displayMode );
+      fps.expandoOnInit( this.properties, this.context.domElement, this.displayMode );
 
-      updateBannerThemeStyles( this.properties, this.properties.bannerStyleChoice ? this.properties.bannerStyleChoice : 'corpDark1', true, this.properties.defPinState );
+      fps.updateBannerThemeStyles( this.properties, this.properties.bannerStyleChoice ? this.properties.bannerStyleChoice : 'corpDark1', true, this.properties.defPinState );
  
-      this.properties.webpartHistory = getWebPartHistoryOnInit( this.context.pageContext.user.displayName, this.properties.webpartHistory );
+      this.properties.webpartHistory = fps.getWebPartHistoryOnInit( this.context.pageContext.user.displayName, this.properties.webpartHistory );
 
-      renderCustomStyles( this as any, this.domElement, this.properties, false );
+      fps.renderCustomStyles( this as any, this.domElement, this.properties, false );
 
     });
 
@@ -368,17 +371,17 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
       super.onPropertyPaneFieldChanged(propertyPath, oldValue, newValue);
   
       try {
-        await validateDocumentationUrl ( this.properties, propertyPath , newValue );
+        await fps.validateDocumentationUrl ( this.properties, propertyPath , newValue );
       } catch(e) {
         alert('unalbe to validateDocumentationUrl' );
       }
 
   
-      this.properties.webpartHistory = updateWebpartHistoryV2( this.properties.webpartHistory , propertyPath , newValue, this.context.pageContext.user.displayName, [], [] );
+      this.properties.webpartHistory = fps.updateWebpartHistoryV2( this.properties.webpartHistory , propertyPath , newValue, this.context.pageContext.user.displayName, [], [] );
   
       if ( propertyPath === 'fpsImportProps' ) {
   
-        this.importErrorMessage = updateFpsImportProps( this.properties, importBlockProps, propertyPath, newValue,
+        this.importErrorMessage = fps.updateFpsImportProps( this.properties, fps.importBlockProps, propertyPath, newValue,
           this.context.propertyPane.refresh,
           this.onPropertyPaneConfigurationStart,
           this.exitPropPaneChanged,
@@ -386,12 +389,12 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
   
        } else if ( propertyPath === 'bannerStyle' || propertyPath === 'bannerCmdStyle' )  {
   
-        refreshBannerStylesOnPropChange( this.properties, propertyPath, newValue, this.context.propertyPane.refresh );
+        fps.refreshBannerStylesOnPropChange( this.properties, propertyPath, newValue, this.context.propertyPane.refresh );
   
       } else if (propertyPath === 'bannerStyleChoice')  {
         // bannerThemes, bannerThemeKeys, makeCSSPropPaneString
   
-        updateBannerThemeStyles( this.properties , newValue, true, this.properties.defPinState );
+        fps.updateBannerThemeStyles( this.properties , newValue, true, this.properties.defPinState );
   
         if ( newValue === 'custom' || newValue === 'lock' ) {
           //Do nothing for these cases.
@@ -419,17 +422,17 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
           },
           displayGroupsAsAccordion: true, //DONT FORGET THIS IF PROP PANE GROUPS DO NOT EXPAND
           groups: [
-            WebPartInfoGroup( repoLink, 'Sample FPS Banner component :)' ),
-            FPSPinMePropsGroup, //End this group  
+            fps.WebPartInfoGroup( fps.repoLink, 'Sample FPS Banner component :)' ),
+            fps.FPSPinMePropsGroup, //End this group  
 
-            FPSBanner3VisHelpGroup( this.context, this.onPropertyPaneFieldChanged, this.properties ),
-            FPSBanner3BasicGroup( this.forceBanner , this.modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true ),
-            FPSBanner3NavGroup(),
-            FPSBanner3ThemeGroup( this.modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, ),
-            FPSOptionsGroupBasic( false, true, true, true, this.properties.allSectionMaxWidthEnable, true, this.properties.allSectionMarginEnable, true ), // this group
-            FPSOptionsExpando( this.properties.enableExpandoramic, this.properties.enableExpandoramic,null, null ),
+            fps.FPSBanner3VisHelpGroup( this.context, this.onPropertyPaneFieldChanged, this.properties ),
+            fps.FPSBanner3BasicGroup( this.forceBanner , this.modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true ),
+            fps.FPSBanner3NavGroup(),
+            fps.FPSBanner3ThemeGroup( this.modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, ),
+            fps.FPSOptionsGroupBasic( false, true, true, true, this.properties.allSectionMaxWidthEnable, true, this.properties.allSectionMarginEnable, true ), // this group
+            fps.FPSOptionsExpando( this.properties.enableExpandoramic, this.properties.enableExpandoramic,null, null ),
   
-            FPSImportPropsGroup, // this group
+            fps.FPSImportPropsGroup, // this group
           ]
         }
       ]
