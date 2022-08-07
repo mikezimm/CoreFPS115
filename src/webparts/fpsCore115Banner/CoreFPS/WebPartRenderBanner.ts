@@ -1,10 +1,11 @@
+
+import { WebPartContext } from "@microsoft/sp-webpart-base";
 import { DisplayMode } from "@microsoft/sp-core-library";
 
 import { IMinWPBannerProps, IWebpartBannerProps, IBuildBannerSettings, IRepoLinks, IFPSUser } from "../fpsReferences";
 
 import { buildBannerProps, visitorPanelInfo, verifyAudienceVsUser } from '../fpsReferences';
 
-import { WebPartContext } from "@microsoft/sp-webpart-base";
 
 export function mainWebPartRenderBannerSetup( 
     displayMode:DisplayMode, beAReader: boolean, FPSUser: IFPSUser, panelTitle: string,

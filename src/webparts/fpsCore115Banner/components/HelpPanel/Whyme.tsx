@@ -1,10 +1,10 @@
-import * as React from 'react';
+// import * as React from 'react';
 
 // import { Icon } from 'office-ui-fabric-react';
 
-import { IHelpTable, } from '../../fpsReferences';
-import { IRepoLinks, repoLink, } from '../../fpsReferences';
-import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
+// import { IHelpTable, } from '../../fpsReferences';
+// import { IRepoLinks, repoLink, } from '../../fpsReferences';
+// import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
 export function whyContent( ) {
 

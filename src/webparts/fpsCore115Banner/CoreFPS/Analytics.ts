@@ -3,7 +3,7 @@
 import { DisplayMode, } from '@microsoft/sp-core-library';
 
 import { IFpsCore115BannerProps } from '../components/IFpsCore115BannerProps';
-import { saveAnalytics3,IZLoadAnalytics, IZSentAnalytics, } from '../fpsReferences';
+import { saveAnalytics3, IZLoadAnalytics, IZSentAnalytics, } from '../fpsReferences';
 
 export const analyticsList: string = "FPSPageInfoViews";
 export const analyticsWeb: string = "/sites/Templates/Analytics/";

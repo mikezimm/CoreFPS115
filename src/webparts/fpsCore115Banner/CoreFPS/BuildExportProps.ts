@@ -42,7 +42,6 @@
 
 //  import * as strings from 'FpsCore115BannerWebPartStrings';
 
-// import { IFpsCore115BannerWebPartProps, exportIgnoreProps, exportIgnorePropsFPS, } from '../fpsReferences';
 import { IFpsCore115BannerWebPartProps, exportIgnoreProps, } from '../IFpsCore115BannerWebPartProps';
 
 import { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2,  } from '../fpsReferences';

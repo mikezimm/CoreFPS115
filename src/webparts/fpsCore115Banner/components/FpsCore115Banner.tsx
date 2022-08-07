@@ -2,8 +2,8 @@ import * as React from 'react';
 import styles from './FpsCore115Banner.module.scss';
 
 import { escape } from '@microsoft/sp-lodash-subset';
-
 import { IFpsCore115BannerProps, IFpsCore115BannerState } from './IFpsCore115BannerProps';
+
 import { saveViewAnalytics } from '../CoreFPS/Analytics';
 
 import FetchBanner from '../CoreFPS/FetchBannerElement';
