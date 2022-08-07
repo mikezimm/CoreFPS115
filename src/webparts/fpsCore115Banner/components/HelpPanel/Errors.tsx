@@ -1,11 +1,10 @@
 import * as React from 'react';
 
-// import { convertIssuesMarkdownStringToSpan } from '@mikezimm/npmfunctions/dist/Elements/Markdown';
 import { IHelpTable, } from '../../fpsReferences';
+import { IRepoLinks, repoLink, } from '../../fpsReferences';
+import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
-import { IRepoLinks } from '../../fpsReferences';
-
-export function errorsContent( repoLinks: IRepoLinks ) {
+export function errorsContent( ) {
 
     return null;
     

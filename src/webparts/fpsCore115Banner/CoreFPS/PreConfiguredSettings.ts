@@ -1,10 +1,7 @@
-// import { IPropertyFieldGroupOrPerson } from "@pnp/spfx-property-controls/lib/PropertyFieldPeoplePicker";
-// import { IFpsCore115BannerWebPartProps } from "../IFpsCore115BannerWebPartProps";
 
-import { IPreConfigSettings, IAllPreConfigSettings } from '../fpsReferences';
-import { PresetFPSBanner } from '../fpsReferences';
-import { encrptMeOriginalTest } from '../fpsReferences';
-import { createBannerStyleStr } from "../fpsReferences";
+import { PresetFPSBanner, IPreConfigSettings, IAllPreConfigSettings } from '../fpsReferences';
+// import { encrptMeOriginalTest } from '../fpsReferences';
+// import { createBannerStyleStr } from "../fpsReferences";
 
 //Specific to this web part
 export const WPForceEverywhere : IPreConfigSettings = {

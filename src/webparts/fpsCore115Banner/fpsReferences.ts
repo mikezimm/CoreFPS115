@@ -1,7 +1,3 @@
-
-
-
-
 /***
  *    d888888b db   db d888888b .d8888.      db   d8b   db d88888b d8888b.      d8888b.  .d8b.  d8888b. d888888b 
  *    `~~88~~' 88   88   `88'   88'  YP      88   I8I   88 88'     88  `8D      88  `8D d8' `8b 88  `8D `~~88~~' 
@@ -18,10 +14,18 @@
 
 // import * as strings from 'FpsCore115BannerWebPartStrings';
 // import FpsCore115Banner from './components/FpsCore115Banner';
-export { IFpsCore115BannerProps } from './components/IFpsCore115BannerProps';
 
-export { IFpsCore115BannerWebPartProps } from './IFpsCore115BannerWebPartProps';
+// export { IFpsCore115BannerWebPartProps, exportIgnoreProps } from './IFpsCore115BannerWebPartProps';
+// export { IFpsCore115BannerProps, IFpsCore115BannerState } from './components/IFpsCore115BannerProps';
 
+// export { importBlockProps, } from './IFpsCore115BannerWebPartProps';
+
+// export { getWebPartHelpElement } from './CoreFPS/PropPaneHelp';
+// export { PreConfiguredProps } from './CoreFPS/PreConfiguredSettings';  // FPS Presets
+
+// export { buildExportProps, buildFPSAnalyticsProps } from './CoreFPS/BuildExportProps'; // Export Props, analytics
+
+// export { saveViewAnalytics } from './CoreFPS/Analytics';
 
 /***
  *    d88888b d8888b. .d8888.      d8888b. d8888b. d88888b .d8888. d88888b d888888b .d8888. 
@@ -36,7 +40,7 @@ export { IFpsCore115BannerWebPartProps } from './IFpsCore115BannerWebPartProps';
 
 export { applyPresetCollectionDefaults } from '@mikezimm/npmfunctions/dist/PropPaneHelp/ApplyPresets';
 export { ISitePreConfigProps, } from '@mikezimm/npmfunctions/dist/PropPaneHelp/PreConfigFunctions';
-export { PreConfiguredProps } from './CoreFPS/PreConfiguredSettings';
+
 
 
 /***
@@ -58,11 +62,12 @@ export { getFPSUser } from '@mikezimm/npmfunctions/dist/Services/Users/FPSUser';
 
 import * as links from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
 
+import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
 export { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
 
-import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
-export const repoLink: IRepoLinks = links.gitRepoCoreFPS115Small;
 
+export const repoLink: IRepoLinks = links.gitRepoCoreFPS115Small;
+export const trickyEmails = links.trickyEmails;
 
 /***
  *    .d8888. d888888b db    db db      d88888b .d8888. 
@@ -107,8 +112,7 @@ export { getWebPartHistoryOnInit } from '@mikezimm/npmfunctions/dist/Services/Pr
  */
 
 export { IWebpartBannerProps } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/bannerProps';
-export { mainWebPartRenderBannerSetup } from './CoreFPS/WebPartRenderBanner';
-export { buildExportProps, buildFPSAnalyticsProps } from './CoreFPS/BuildExportProps';
+
 
 /***
  *    d8888b. d8888b.  .d88b.  d8888b.       d888b  d8888b.  .d88b.  db    db d8888b. .d8888. 
@@ -140,7 +144,7 @@ export { FPSOptionsExpando, } from '@mikezimm/npmfunctions/dist/Services/DOM/Exp
  *    USED for IMPORTING and EXPORTING
  */
 
-export { importBlockProps, } from './IFpsCore115BannerWebPartProps';
+
 export { updateFpsImportProps, FPSImportPropsGroup } from '@mikezimm/npmfunctions/dist/Services/PropPane/ImportFunctions';
 export { refreshBannerStylesOnPropChange,  } from '@mikezimm/npmfunctions/dist/WebPartFunctions/BannerThemeFunctions';
 export { validateDocumentationUrl,  } from '@mikezimm/npmfunctions/dist/Links/ValidateLinks';
@@ -157,12 +161,14 @@ export { validateDocumentationUrl,  } from '@mikezimm/npmfunctions/dist/Links/Va
  *    USED FOR ANALYTICS AND LOGGING
  */
 
-// export { saveViewAnalytics } from './CoreFPS/Analytics';
 
-export { importBlockPropsFPS } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+export { saveAnalytics3 } from '@mikezimm/npmfunctions/dist/Services/Analytics/analytics2';
+export { IZLoadAnalytics, IZSentAnalytics, } from '@mikezimm/npmfunctions/dist/Services/Analytics/interfaces';
+
+// export { importBlockPropsFPS } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
 export { IMinWPBannerProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
-export { IMinBannerUIProps, IMinPinMeProps, IMinPandoramicProps, IMinBannerThemeProps, IMinCustomHelpProps, IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
-
+// export { IMinBannerUIProps, IMinPinMeProps, IMinPandoramicProps, IMinBannerThemeProps, IMinCustomHelpProps, 
+//     IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
 
 
 //Added from WebPartRenderBanner
@@ -182,7 +188,7 @@ export { defaultBannerCommandStyles, } from "@mikezimm/npmfunctions/dist/HelpPan
 
 export { BannerHelp, FPSBasicHelp, FPSExpandHelp, ImportHelp, SinglePageAppHelp, VisitorHelp, PinMeHelp, SitePresetsInfo } from '@mikezimm/npmfunctions/dist/PropPaneHelp/FPSCommonOnNpm';
 
-export {HandleBarReplacements } from '@mikezimm/npmfunctions/dist/Services/Strings/handleBars';
+export { HandleBarReplacements } from '@mikezimm/npmfunctions/dist/Services/Strings/handleBars';
 
 
 // from src\webparts\fpsCore115Banner\CoreFPS\PreConfiguredSettings.ts
@@ -203,7 +209,11 @@ export { IBannerPages } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/b
 
 export { createExportObject, } from '@mikezimm/npmfunctions/dist/Services/PropPane/ExportFunctions';
 
+import { exportIgnorePropsFPS, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+console.log( 'exportIgnorePropsFPS', exportIgnorePropsFPS );
 export { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2, exportIgnorePropsFPS, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+
+
 
 export { changeBannerBasics, changeBannerNav, changeBannerTheme, changeBannerUtility,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
 export { changePinMe,  } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
@@ -224,3 +234,10 @@ export { createAboutRow } from '@mikezimm/npmfunctions/dist/CoreFPS/BannerPageMi
 export { tricksTable } from '@mikezimm/npmfunctions/dist/CoreFPS/ReusaableTricks';
 
 export { convertIssuesMarkdownStringToSpan } from '@mikezimm/npmfunctions/dist/Elements/Markdown';
+
+
+export { getHelpfullError } from '@mikezimm/npmfunctions/dist/Services/Logging/ErrorHandler';
+export { getHelpfullErrorV2, saveThisLogItem } from  '@mikezimm/npmfunctions/dist/Services/Logging/ErrorHandler';
+
+
+

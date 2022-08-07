@@ -1,9 +1,7 @@
 import * as React from 'react';
 
 import { IHelpTable, } from '../../fpsReferences';
-
-import { IRepoLinks } from '../../fpsReferences';
-
+import { IRepoLinks, repoLink, } from '../../fpsReferences';
 import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
 //import { IHelpTableRow, IHelpTable, IPageContent, ISinglePageProps } from '../Component/ISinglePageProps';
@@ -13,7 +11,7 @@ import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
  * @param repoLinks 
  * @returns 
  */
-export function gettingStartedContent( repoLinks: IRepoLinks ) {
+export function gettingStartedContent(  ) {
 
     return null;
     

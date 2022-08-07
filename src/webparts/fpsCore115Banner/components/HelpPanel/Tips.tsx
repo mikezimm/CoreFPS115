@@ -8,10 +8,9 @@
 
 // import * as StdIcons from '@mikezimm/npmfunctions/dist/Icons/iconNames';
 
-// import { IRepoLinks } from '@mikezimm/npmfunctions/dist/Links/CreateLinks';
-
-// import { convertIssuesMarkdownStringToSpan } from '@mikezimm/npmfunctions/dist/Elements/Markdown';
-
+import { IHelpTable, } from '../../fpsReferences';
+import { IRepoLinks, repoLink, } from '../../fpsReferences';
+import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
 // const iconStyles: any = { root: {
 //   fontSize: 'x-large',

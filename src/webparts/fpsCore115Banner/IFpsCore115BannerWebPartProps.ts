@@ -1,11 +1,21 @@
 
 
-import { exportIgnorePropsFPS, importBlockPropsFPS } from './fpsReferences';
+/***
+ * NOTE:  All imports in here Must be imported directly from npmFunctions, not the fpsPreferences
+ * Or else it will get into an endless loop because these values are imported into fpsPreferences
+ * 
+ */
+import { exportIgnorePropsFPS, } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+import { importBlockPropsFPS } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup';
+
 import { IMinBannerUIProps, IMinPinMeProps, IMinPandoramicProps, IMinBannerThemeProps, IMinCustomHelpProps, 
-  IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "./fpsReferences";
+  IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/BannerSetup";
+
 
 //Specific for this web part
 export const exportIgnorePropsThis : string[] = [ ];
+
+console.log( 'exportIgnorePropsFPS', exportIgnorePropsFPS );
 
 export const exportIgnoreProps : string[] = [ ...exportIgnorePropsFPS, ...exportIgnorePropsThis  ];
 

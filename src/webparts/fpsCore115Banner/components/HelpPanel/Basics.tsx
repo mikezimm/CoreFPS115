@@ -3,12 +3,10 @@ import * as React from 'react';
 import { Icon } from 'office-ui-fabric-react';
 
 import { IHelpTable, } from '../../fpsReferences';
+import { IRepoLinks, repoLink, } from '../../fpsReferences';
+import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
-import { IRepoLinks } from '../../fpsReferences';
-
-// import { convertIssuesMarkdownStringToSpan } from '@mikezimm/npmfunctions/dist/Elements/Markdown';
-
-export function basicsContent( repoLinks: IRepoLinks ) {
+export function basicsContent(  ) {
 
     return null;
     

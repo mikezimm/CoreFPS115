@@ -1,8 +1,9 @@
 
-import { saveAnalytics3 } from '@mikezimm/npmfunctions/dist/Services/Analytics/analytics2';
-import { IZLoadAnalytics, IZSentAnalytics, } from '@mikezimm/npmfunctions/dist/Services/Analytics/interfaces';
+
 import { DisplayMode, } from '@microsoft/sp-core-library';
+
 import { IFpsCore115BannerProps } from '../components/IFpsCore115BannerProps';
+import { saveAnalytics3,IZLoadAnalytics, IZSentAnalytics, } from '../fpsReferences';
 
 export const analyticsList: string = "FPSPageInfoViews";
 export const analyticsWeb: string = "/sites/Templates/Analytics/";

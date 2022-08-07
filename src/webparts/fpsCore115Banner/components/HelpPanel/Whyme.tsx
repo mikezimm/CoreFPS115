@@ -2,15 +2,11 @@ import * as React from 'react';
 
 // import { Icon } from 'office-ui-fabric-react';
 
-import * as links from '@mikezimm/npmfunctions/dist/Links/LinksRepos';
-
 import { IHelpTable, } from '../../fpsReferences';
-
-import { IRepoLinks } from '../../fpsReferences';
-
+import { IRepoLinks, repoLink, } from '../../fpsReferences';
 import { convertIssuesMarkdownStringToSpan } from '../../fpsReferences';
 
-export function whyContent( repoLinks: IRepoLinks ) {
+export function whyContent( ) {
 
     return null;
 

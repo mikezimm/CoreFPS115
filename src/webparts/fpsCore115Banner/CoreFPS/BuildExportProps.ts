@@ -24,10 +24,9 @@
   *                                                                                                                                                                              
   */
 
-//  import { getHelpfullError } from '@mikezimm/npmfunctions/dist/Services/Logging/ErrorHandler';
-//  import { getHelpfullErrorV2, saveThisLogItem } from  '@mikezimm/npmfunctions/dist/Services/Logging/ErrorHandler';
+//  import { getHelpfullError, getHelpfullError } from '../fpsReferences';
 
- import { createExportObject, } from '@mikezimm/npmfunctions/dist/Services/PropPane/ExportFunctions';
+ import { createExportObject, } from '../fpsReferences';
 //  import { IMinExportObject, } from '@mikezimm/npmfunctions/dist/Services/PropPane/ExportFunctions';
 
   /***
@@ -43,19 +42,16 @@
 
 //  import * as strings from 'FpsCore115BannerWebPartStrings';
 
-import { IFpsCore115BannerWebPartProps } from '../IFpsCore115BannerWebPartProps';
-import { exportIgnoreProps, importBlockProps, } from '../IFpsCore115BannerWebPartProps';
+// import { IFpsCore115BannerWebPartProps, exportIgnoreProps, exportIgnorePropsFPS, } from '../fpsReferences';
+import { IFpsCore115BannerWebPartProps, exportIgnoreProps, } from '../IFpsCore115BannerWebPartProps';
 
-import { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2, exportIgnorePropsFPS, importBlockPropsFPS, } from '../fpsReferences';
+import { changeCustomHelp, changeExpando, changeBanner, changePageStyle, changefpsOptions2,  } from '../fpsReferences';
 
 import { changeBannerBasics, changeBannerNav, changeBannerTheme, changeBannerUtility,  } from '../fpsReferences';
+
 import { changePinMe,  } from '../fpsReferences';
 
-
-// import { ILoadPerformanceALVFM, IPerformanceOp } from './components/Performance/IFpsCore115BannerWebPartProps';
-
-
-
+import { importBlockProps } from '../IFpsCore115BannerWebPartProps'
 
 /***
  *    .d8888.  .d8b.  .88b  d88. d8888b. db      d88888b       .d88b.  d8b   db db      db    db                                                                            
