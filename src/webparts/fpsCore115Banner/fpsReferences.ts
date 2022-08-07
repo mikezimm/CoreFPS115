@@ -16,8 +16,8 @@
 // STANDARD PROJECT IMPORTS
 
 
-import * as strings from 'FpsCore115BannerWebPartStrings';
-import FpsCore115Banner from './components/FpsCore115Banner';
+// import * as strings from 'FpsCore115BannerWebPartStrings';
+// import FpsCore115Banner from './components/FpsCore115Banner';
 export { IFpsCore115BannerProps } from './components/IFpsCore115BannerProps';
 
 export { IFpsCore115BannerWebPartProps } from './IFpsCore115BannerWebPartProps';

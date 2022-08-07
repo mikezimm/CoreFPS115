@@ -1,8 +1,8 @@
 
 
 import { exportIgnorePropsFPS, importBlockPropsFPS } from './fpsReferences';
-import { IMinWPBannerProps } from "./fpsReferences";
-import { IMinBannerUIProps, IMinPinMeProps, IMinPandoramicProps, IMinBannerThemeProps, IMinCustomHelpProps, IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "./fpsReferences";
+import { IMinBannerUIProps, IMinPinMeProps, IMinPandoramicProps, IMinBannerThemeProps, IMinCustomHelpProps, 
+  IMinPageStyleProps, IMinBannerUtilityProps, IMinFPSLegacyProps } from "./fpsReferences";
 
 //Specific for this web part
 export const exportIgnorePropsThis : string[] = [ ];
