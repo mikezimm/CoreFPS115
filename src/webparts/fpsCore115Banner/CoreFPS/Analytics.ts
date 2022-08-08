@@ -2,11 +2,45 @@
 
 import { DisplayMode, } from '@microsoft/sp-core-library';
 
-import { IFpsCore115BannerProps } from '../components/IFpsCore115BannerProps';
-import { saveAnalytics3, IZLoadAnalytics, IZSentAnalytics, } from '../fpsReferences';
+/***
+ *    d88888b d8888b. .d8888.      d8888b. d8888b. d88888b .d8888. d88888b d888888b .d8888. 
+ *    88'     88  `8D 88'  YP      88  `8D 88  `8D 88'     88'  YP 88'     `~~88~~' 88'  YP 
+ *    88ooo   88oodD' `8bo.        88oodD' 88oobY' 88ooooo `8bo.   88ooooo    88    `8bo.   
+ *    88~~~   88~~~     `Y8b.      88~~~   88`8b   88~~~~~   `Y8b. 88~~~~~    88      `Y8b. 
+ *    88      88      db   8D      88      88 `88. 88.     db   8D 88.        88    db   8D 
+ *    YP      88      `8888Y'      88      88   YD Y88888P `8888Y' Y88888P    YP    `8888Y' 
+ *                                                                                          
+ *                                                                                          
+ */
 
-export const analyticsList: string = "FPSPageInfoViews";
-export const analyticsWeb: string = "/sites/Templates/Analytics/";
+ import { IFpsCore115BannerProps } from '../components/IFpsCore115BannerProps';
+ import { saveAnalytics3, IZLoadAnalytics, IZSentAnalytics, } from '../fpsReferences';
+ 
+ 
+ /***
+  *    db       .d88b.   .o88b.  .d8b.  db      
+  *    88      .8P  Y8. d8P  Y8 d8' `8b 88      
+  *    88      88    88 8P      88ooo88 88      
+  *    88      88    88 8b      88~~~88 88      
+  *    88booo. `8b  d8' Y8b  d8 88   88 88booo. 
+  *    Y88888P  `Y88P'   `Y88P' YP   YP Y88888P 
+  *                                             
+  *                                             
+  */
+ 
+ export const analyticsList: string = "FPSPageInfoViews";
+ export const analyticsWeb: string = "/sites/Templates/Analytics/";
+ 
+ /***
+  *     .d8b.  d8b   db  .d8b.  db      db    db d888888b d888888b  .o88b. .d8888. 
+  *    d8' `8b 888o  88 d8' `8b 88      `8b  d8' `~~88~~'   `88'   d8P  Y8 88'  YP 
+  *    88ooo88 88V8o 88 88ooo88 88       `8bd8'     88       88    8P      `8bo.   
+  *    88~~~88 88 V8o88 88~~~88 88         88       88       88    8b        `Y8b. 
+  *    88   88 88  V888 88   88 88booo.    88       88      .88.   Y8b  d8 db   8D 
+  *    YP   YP VP   V8P YP   YP Y88888P    YP       YP    Y888888P  `Y88P' `8888Y' 
+  *                                                                                
+  *                                                                                
+  */
 
 /***
  *     .d8b.  d8b   db  .d8b.  db      db    db d888888b d888888b  .o88b. .d8888. 
