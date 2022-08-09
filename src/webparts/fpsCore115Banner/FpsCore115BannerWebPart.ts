@@ -169,18 +169,18 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
 
     //Common FPS variables
 
-    private sitePresets : ISitePreConfigProps = null;
-    private trickyApp = 'FPS Core115';
-    private wpInstanceID: any = webpartInstance( this.trickyApp );
-    private FPSUser: IFPSUser = null;
+    private _sitePresets : ISitePreConfigProps = null;
+    private _trickyApp = 'FPS Core115';
+    private _wpInstanceID: any = webpartInstance( this._trickyApp );
+    private _FPSUser: IFPSUser = null;
   
     //For FPS Banner
-    private forceBanner = true ;
-    private modifyBannerTitle = true ;
-    private modifyBannerStyle = true ;
+    private _forceBanner = true ;
+    private _modifyBannerTitle = true ;
+    private _modifyBannerStyle = true ;
   
-    private exitPropPaneChanged = false;
-    private importErrorMessage = '';
+    private _exitPropPaneChanged = false;
+    private _importErrorMessage = '';
       
     // private performance : ILoadPerformanceALVFM = null;
     // private bannerProps: IWebpartBannerProps = null;
@@ -188,9 +188,49 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
     // private urlParameters: any = {};
   
     //2022-04-07:  Intent of this is a one-time per instance to 'become a reader' level user.  aka, hide banner buttons that reader won't see
-    private beAReader: boolean = false; 
+    private _beAReader: boolean = false; 
 
 
+    protected onInit(): Promise<void> {
+      this._environmentMessage = this._getEnvironmentMessage();
+  
+      return super.onInit().then(async _ => {
+  
+        /***
+       *     .d88b.  d8b   db      d888888b d8b   db d888888b d888888b      d8888b. db   db  .d8b.  .d8888. d88888b      .d888b. 
+       *    .8P  Y8. 888o  88        `88'   888o  88   `88'   `~~88~~'      88  `8D 88   88 d8' `8b 88'  YP 88'          VP  `8D 
+       *    88    88 88V8o 88         88    88V8o 88    88       88         88oodD' 88ooo88 88ooo88 `8bo.   88ooooo         odD' 
+       *    88    88 88 V8o88         88    88 V8o88    88       88         88~~~   88~~~88 88~~~88   `Y8b. 88~~~~~       .88'   
+       *    `8b  d8' 88  V888        .88.   88  V888   .88.      88         88      88   88 88   88 db   8D 88.          j88.    
+       *     `Y88P'  VP   V8P      Y888888P VP   V8P Y888888P    YP         88      YP   YP YP   YP `8888Y' Y88888P      888888D 
+       *                                                                                                                         
+       *                                                                                                                         
+       */
+  
+        //NEED TO APPLY THIS HERE as well as follow-up in render for it to not visibly change
+        this._sitePresets = applyPresetCollectionDefaults( this._sitePresets, PreConfiguredProps, this.properties, this.context.pageContext.web.serverRelativeUrl ) ;
+  
+        //This indicates if its SPA, Teams etc.... always keep.
+        this.properties.pageLayout =  this.context['_pageLayoutType']?this.context['_pageLayoutType'] : this.context['_pageLayoutType'];
+        // this.urlParameters = getUrlVars();
+  
+        this._FPSUser = getFPSUser( this.context as any, trickyEmails, this._trickyApp ) ;
+        console.log( 'FPSUser: ', this._FPSUser );
+  
+        expandoOnInit( this.properties, this.context.domElement, this.displayMode );
+  
+        updateBannerThemeStyles( this.properties, this.properties.bannerStyleChoice ? this.properties.bannerStyleChoice : 'corpDark1', true, this.properties.defPinState );
+   
+        this.properties.webpartHistory = getWebPartHistoryOnInit( this.context.pageContext.user.displayName, this.properties.webpartHistory );
+  
+        renderCustomStyles( 
+          { wpInstanceID: this._wpInstanceID, domElement: this.domElement, wpProps: this.properties, 
+            displayMode: this.displayMode,
+            doHeadings: false } );
+  
+      });
+  
+    }
 
   /***
    *    d8888b. d88888b d8b   db d8888b. d88888b d8888b.       .o88b.  .d8b.  db      db      .d8888. 
@@ -207,13 +247,16 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
   public render(): void {
 
     
-   renderCustomStyles( this as any, this.domElement, this.properties, false );
+    renderCustomStyles( 
+      { wpInstanceID: this._wpInstanceID, domElement: this.domElement, wpProps: this.properties, 
+        displayMode: this.displayMode,
+        doHeadings: true } );
 
-   const exportProps = buildExportProps( this.properties , this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl );
+   const exportProps = buildExportProps( this.properties , this._wpInstanceID, this.context.pageContext.web.serverRelativeUrl );
 
-   const bannerProps: IWebpartBannerProps = mainWebPartRenderBannerSetup( this.displayMode, this.beAReader, this.FPSUser, repoLink.desc, 
-       this.properties, repoLink, trickyEmails, exportProps, strings , this.domElement.clientWidth, this.context, this.modifyBannerTitle, 
-       this.forceBanner, this.properties.enableExpandoramic );
+   const bannerProps: IWebpartBannerProps = mainWebPartRenderBannerSetup( this.displayMode, this._beAReader, this._FPSUser, repoLink.desc, 
+       this.properties, repoLink, trickyEmails, exportProps, strings , this.domElement.clientWidth, this.context, this._modifyBannerTitle, 
+       this._forceBanner, this.properties.enableExpandoramic );
 
 
     const element: React.ReactElement<IFpsCore115BannerProps> = React.createElement(
@@ -235,14 +278,14 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
         displayMode: this.displayMode,
 
         // saveLoadAnalytics: this.saveLoadAnalytics.bind(this),
-        FPSPropsObj: buildFPSAnalyticsProps( this.properties, this.wpInstanceID, this.context.pageContext.web.serverRelativeUrl ),
+        FPSPropsObj: buildFPSAnalyticsProps( this.properties, this._wpInstanceID, this.context.pageContext.web.serverRelativeUrl ),
 
         //Banner related props
         errMessage: 'any',
         bannerProps: bannerProps,
         webpartHistory: this.properties.webpartHistory,
 
-        sitePresets: this.sitePresets,
+        sitePresets: this._sitePresets,
 
         fpsPinMenu: {
           defPinState: this.properties.defPinState,
@@ -257,43 +300,6 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
     ReactDom.render(element, this.domElement);
   }
 
-  protected onInit(): Promise<void> {
-    this._environmentMessage = this._getEnvironmentMessage();
-
-    return super.onInit().then(async _ => {
-
-      /***
-     *     .d88b.  d8b   db      d888888b d8b   db d888888b d888888b      d8888b. db   db  .d8b.  .d8888. d88888b      .d888b. 
-     *    .8P  Y8. 888o  88        `88'   888o  88   `88'   `~~88~~'      88  `8D 88   88 d8' `8b 88'  YP 88'          VP  `8D 
-     *    88    88 88V8o 88         88    88V8o 88    88       88         88oodD' 88ooo88 88ooo88 `8bo.   88ooooo         odD' 
-     *    88    88 88 V8o88         88    88 V8o88    88       88         88~~~   88~~~88 88~~~88   `Y8b. 88~~~~~       .88'   
-     *    `8b  d8' 88  V888        .88.   88  V888   .88.      88         88      88   88 88   88 db   8D 88.          j88.    
-     *     `Y88P'  VP   V8P      Y888888P VP   V8P Y888888P    YP         88      YP   YP YP   YP `8888Y' Y88888P      888888D 
-     *                                                                                                                         
-     *                                                                                                                         
-     */
-
-      //NEED TO APPLY THIS HERE as well as follow-up in render for it to not visibly change
-      this.sitePresets = applyPresetCollectionDefaults( this.sitePresets, PreConfiguredProps, this.properties, this.context.pageContext.web.serverRelativeUrl ) ;
-
-      //This indicates if its SPA, Teams etc.... always keep.
-      this.properties.pageLayout =  this.context['_pageLayoutType']?this.context['_pageLayoutType'] : this.context['_pageLayoutType'];
-      // this.urlParameters = getUrlVars();
-
-      this.FPSUser = getFPSUser( this.context as any, trickyEmails, this.trickyApp ) ;
-      console.log( 'FPSUser: ', this.FPSUser );
-
-      expandoOnInit( this.properties, this.context.domElement, this.displayMode );
-
-      updateBannerThemeStyles( this.properties, this.properties.bannerStyleChoice ? this.properties.bannerStyleChoice : 'corpDark1', true, this.properties.defPinState );
- 
-      this.properties.webpartHistory = getWebPartHistoryOnInit( this.context.pageContext.user.displayName, this.properties.webpartHistory );
-
-      renderCustomStyles( this as any, this.domElement, this.properties, false );
-
-    });
-
-  }
 
   private _getEnvironmentMessage(): string {
     if (!!this.context.sdks.microsoftTeams) { // running in Teams
@@ -381,10 +387,10 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
   
       if ( propertyPath === 'fpsImportProps' ) {
   
-        this.importErrorMessage = updateFpsImportProps( this.properties, importBlockProps, propertyPath, newValue,
+        this._importErrorMessage = updateFpsImportProps( this.properties, importBlockProps, propertyPath, newValue,
           this.context.propertyPane.refresh,
           this.onPropertyPaneConfigurationStart,
-          this.exitPropPaneChanged,
+          this._exitPropPaneChanged,
         );
   
        } else if ( propertyPath === 'bannerStyle' || propertyPath === 'bannerCmdStyle' )  {
@@ -426,9 +432,9 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
             FPSPinMePropsGroup, //End this group  
 
             FPSBanner3VisHelpGroup( this.context, this.onPropertyPaneFieldChanged, this.properties ),
-            FPSBanner3BasicGroup( this.forceBanner , this.modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true ),
+            FPSBanner3BasicGroup( this._forceBanner , this._modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true ),
             FPSBanner3NavGroup(),
-            FPSBanner3ThemeGroup( this.modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, ),
+            FPSBanner3ThemeGroup( this._modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, ),
             FPSOptionsGroupBasic( false, true, true, true, this.properties.allSectionMaxWidthEnable, true, this.properties.allSectionMarginEnable, true ), // this group
             FPSOptionsExpando( this.properties.enableExpandoramic, this.properties.enableExpandoramic,null, null ),
   

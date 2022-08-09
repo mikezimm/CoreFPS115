@@ -77,7 +77,7 @@ export function mainWebPartRenderBannerSetup(
       //Error info
       errMessage: errMessage,
       errorObjArray: errorObjArray, //In the case of Pivot Tiles, this is manualLinks[],
-      expandoErrorObj: expandoErrorObj,
+      expandoErrorObj: expandoErrorObj,  // Is this needed any more?
 
       beAUser: renderAsReader,
       showBeAUserIcon: false,
