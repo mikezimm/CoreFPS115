@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
+import { DisplayMode, } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField
@@ -55,7 +56,8 @@ import { PreConfiguredProps,  } from './CoreFPS/PreConfiguredSettings';
  */
 
 import { webpartInstance, IFPSUser, getFPSUser, repoLink, trickyEmails } from './fpsReferences';
-
+import { createBasePerformanceInit, startPerformOp, updatePerformanceEnd } from './fpsReferences';
+import { IPerformanceOp, ILoadPerformance, IHistoryPerformance } from './fpsReferences';
 
 /***
  *    .d8888. d888888b db    db db      d88888b .d8888. 
@@ -99,6 +101,10 @@ import { IWebpartBannerProps, } from './fpsReferences';
 import { buildExportProps, buildFPSAnalyticsProps , } from './CoreFPS/BuildExportProps';
 
 import { mainWebPartRenderBannerSetup } from './CoreFPS/WebPartRenderBanner';
+
+import { visitorPanelInfo, } from './fpsReferences';
+import { createPerformanceTableVisitor } from './fpsReferences';
+
 
 /***
  *    d8888b. d8888b.  .d88b.  d8888b.       d888b  d8888b.  .d88b.  db    db d8888b. .d8888. 
@@ -182,6 +188,8 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
     private _exitPropPaneChanged = false;
     private _importErrorMessage = '';
       
+    private _performance : ILoadPerformance = null;
+
     // private performance : ILoadPerformanceALVFM = null;
     // private bannerProps: IWebpartBannerProps = null;
   
@@ -189,6 +197,8 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
   
     //2022-04-07:  Intent of this is a one-time per instance to 'become a reader' level user.  aka, hide banner buttons that reader won't see
     private _beAReader: boolean = false; 
+
+    private _fetchInfo: any = null; // Originally IFetchInfo if it has it
 
 
     protected onInit(): Promise<void> {
@@ -214,6 +224,10 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
         this.properties.pageLayout =  this.context['_pageLayoutType']?this.context['_pageLayoutType'] : this.context['_pageLayoutType'];
         // this.urlParameters = getUrlVars();
   
+        //Added for ALVFinMan
+        // DEFAULTS SECTION:  Performance   <<< ================================================================
+        this._performance = createBasePerformanceInit( this.displayMode, false );
+
         this._FPSUser = getFPSUser( this.context as any, trickyEmails, this._trickyApp ) ;
         console.log( 'FPSUser: ', this._FPSUser );
   
@@ -256,8 +270,14 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
 
    const bannerProps: IWebpartBannerProps = mainWebPartRenderBannerSetup( this.displayMode, this._beAReader, this._FPSUser, repoLink.desc, 
        this.properties, repoLink, trickyEmails, exportProps, strings , this.domElement.clientWidth, this.context, this._modifyBannerTitle, 
-       this._forceBanner, this.properties.enableExpandoramic );
+       this._forceBanner, this.properties.enableExpandoramic, null );
 
+       if ( bannerProps.showBeAUserIcon === true ) { bannerProps.beAUserFunction = this._beAUserFunction.bind(this); }
+       // console.log('mainWebPart: baseFetchInfo ~ 308',   );
+       // this._fetchInfo = baseFetchInfo( '', this._performance );
+       // This gets done a second time if you do not want to pass it in the first time.
+       // bannerProps.replacePanelHTML = visitorPanelInfo( this.properties, repoLink, '', '', createPerformanceTableVisitor( this._fetchInfo.performance ) );
+       console.log('mainWebPart: createElement ~ 316',   );
 
     const element: React.ReactElement<IFpsCore115BannerProps> = React.createElement(
       FpsCore115Banner,
@@ -347,17 +367,17 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
  *                                                                       
  */
 
-  // private beAUserFunction() {
-  //   console.log('beAUserFunction:',   );
-  //   if ( this.displayMode === DisplayMode.Edit ) {
-  //     alert("'Be a regular user' mode is only available while viewing the page.  \n\nOnce you are out of Edit mode, please refresh the page (CTRL-F5) to reload the web part.");
+  private _beAUserFunction() {
+    console.log('beAUserFunction:',   );
+    if ( this.displayMode === DisplayMode.Edit ) {
+      alert("'Be a regular user' mode is only available while viewing the page.  \n\nOnce you are out of Edit mode, please refresh the page (CTRL-F5) to reload the web part.");
 
-  //   } else {
-  //     this.beAReader = this.beAReader === true ? false : true;
-  //     this.render();
-  //   }
+    } else {
+      this._beAReader = this._beAReader === true ? false : true;
+      this.render();
+    }
 
-  // }
+  }
 
 
   /***
