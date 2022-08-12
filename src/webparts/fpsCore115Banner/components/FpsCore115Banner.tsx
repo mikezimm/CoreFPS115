@@ -6,7 +6,12 @@ import { IFpsCore115BannerProps, IFpsCore115BannerState } from './IFpsCore115Ban
 
 import { saveViewAnalytics } from '../CoreFPS/Analytics';
 
-import FetchBanner from '../CoreFPS/FetchBannerElement';
+// import FetchBanner from '../CoreFPS/FetchBannerElement';
+import FetchBanner from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/FetchBannerElement';
+
+import { getWebPartHelpElement } from '../CoreFPS/PropPaneHelp';
+import { getBannerPages, } from './HelpPanel/AllContent';
+import { IBannerPages } from "../fpsReferences";
 
 //Use this to add more console.logs for this component
 const urlParams : URLSearchParams = new URLSearchParams( window.location.search );
@@ -15,6 +20,13 @@ const consolePrefix: string = 'fpsconsole: FpsCore115Banner';
 
 
 export default class FpsCore115Banner extends React.Component<IFpsCore115BannerProps, IFpsCore115BannerState> {
+
+  private _webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
+  private _contentPages : IBannerPages = getBannerPages( this.props.bannerProps );
+
+  private _updatePinState( newValue ) {
+    this.setState({ pinState: newValue, });
+  }
 
  /***
 *     .o88b.  .d88b.  d8b   db .d8888. d888888b d8888b. db    db  .o88b. d888888b  .d88b.  d8888b. 
@@ -68,13 +80,14 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 public componentDidUpdate(prevProps){
 
   if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidUpdate` );
-  // let pinStatus = getDefaultFPSPinState ( prevProps.fpsPinMenu, this.props.fpsPinMenu, this.props.displayMode );
 
-  // if ( pinStatus.refresh === true ) {
-  //   FPSPinMe( this.props.fpsPinMenu.domElement, pinStatus.defPinState, null,  false, true, null, this.props.fpsPinMenu.pageLayout, this.props.displayMode );
-  //   this.setState({ pinState: pinStatus.defPinState });
-  // }
-  // this.setState({ pinState: this.state.pinState });
+  const refresh = this.props.displayMode !== prevProps.displayMode ? true : false;
+
+  if ( refresh === true ) {
+    this._webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
+    this._contentPages = getBannerPages( this.props.bannerProps );
+  }
+  
 }
 
   public render(): React.ReactElement<IFpsCore115BannerProps> {
@@ -94,6 +107,9 @@ public componentDidUpdate(prevProps){
 
       nearBannerElementsArray={ [] }
       farBannerElementsArray={ [] }
+
+      contentPages={ this._contentPages }
+      WebPartHelpElement={ this._webPartHelpElement }
 
       updatePinState = { this._updatePinState.bind(this) }
       pinState = { this.state.pinState }
@@ -128,9 +144,5 @@ public componentDidUpdate(prevProps){
       </section>
     );
   }
-
-  private _updatePinState( newValue ) {
-    this.setState({ pinState: newValue, });
-}
 
 }
