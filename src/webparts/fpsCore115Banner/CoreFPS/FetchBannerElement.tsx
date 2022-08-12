@@ -47,6 +47,9 @@ export interface IFetchBannerProps {
     parentProps:    IFpsCore115BannerProps;
     parentState:    IFpsCore115BannerState;
 
+    nearBannerElementsArray: Element[];
+    farBannerElementsArray: Element[];
+
     updatePinState: any;
     pinState: IPinMeState;
 
@@ -103,29 +106,27 @@ export default class FetchBanner extends React.Component<IFetchBannerProps, IFet
  *                                                                                               
  */
 
- private buildNearBannerElements() {
+  private buildNearBannerElements() {
 
-  const elements = [];
-  // defaultBannerCommandStyles.fontWeight = 'bolder';
-  // elements.push(<div style={{ paddingRight: null }} className={ '' } title={ title}>
-  //   <Icon iconName='WindDirection' onClick={ this.jumpToParentSite.bind(this) } style={ defaultBannerCommandStyles }/>
-  // </div>);
-  return elements;
-}
-
-private buildFarBannerElements() {
-  const farElements: any[] = [];
-
-  if ( this.props.parentProps.bannerProps.showTricks === true ) {
-    farElements.push( null );
+    const elements: any[] = this.props.nearBannerElementsArray ? this.props.nearBannerElementsArray : [];
+    // defaultBannerCommandStyles.fontWeight = 'bolder';
+    // elements.push(<div style={{ paddingRight: null }} className={ '' } title={ title}>
+    //   <Icon iconName='WindDirection' onClick={ this.jumpToParentSite.bind(this) } style={ defaultBannerCommandStyles }/>
+    // </div>);
+    return elements;
   }
-  return farElements;
-}
+
+  private buildFarBannerElements() {
+    const farElements: any[] = this.props.farBannerElementsArray ? this.props.farBannerElementsArray : [];
+
+    if ( this.props.parentProps.bannerProps.showTricks === true ) {
+      farElements.push( null );
+    }
+    return farElements;
+  }
 
  private nearBannerElements = this.buildNearBannerElements();
  private farBannerElements = this.buildFarBannerElements();
-
-
 
 
   /***
@@ -187,9 +188,7 @@ private buildFarBannerElements() {
     const { displayMode, fpsPinMenu } = this.props.parentProps;
 
    // let farBannerElementsArray = [];
-   const farBannerElementsArray = [...this.farBannerElements,
-    // this.props.showCodeIcon !== true ? null : <div title={'Show Code Details'}><Icon iconName={ 'Code' } onClick={ this.toggleOriginal.bind(this) } style={ bannerProps.bannerCmdReactCSS }/></div>,
-  ];
+   const farBannerElementsArray = this.buildFarBannerElements();
 
   //If there is no updatePinState function, then the web part does not use it so ignore this code.
   if ( this.props.updatePinState ) {

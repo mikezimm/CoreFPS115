@@ -119,7 +119,7 @@ import { createPerformanceTableVisitor } from './fpsReferences';
 
 import { WebPartInfoGroup, } from './fpsReferences';
 import { FPSOptionsGroupBasic, } from './fpsReferences';
-import { FPSBanner3BasicGroup, FPSBanner3NavGroup, FPSBanner3ThemeGroup } from './fpsReferences';
+import { FPSBanner4BasicGroup, FPSBanner3NavGroup, FPSBanner3ThemeGroup } from './fpsReferences';
 import { FPSBanner3VisHelpGroup } from './fpsReferences';
 import { FPSPinMePropsGroup } from './fpsReferences';
 import { FPSOptionsExpando, } from './fpsReferences'; //expandAudienceChoicesAll
@@ -452,7 +452,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
             FPSPinMePropsGroup, //End this group  
 
             FPSBanner3VisHelpGroup( this.context, this.onPropertyPaneFieldChanged, this.properties ),
-            FPSBanner3BasicGroup( this._forceBanner , this._modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true ),
+            FPSBanner4BasicGroup( this._forceBanner , this._modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true, true ),
             FPSBanner3NavGroup(),
             FPSBanner3ThemeGroup( this._modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, ),
             FPSOptionsGroupBasic( false, true, true, true, this.properties.allSectionMaxWidthEnable, true, this.properties.allSectionMarginEnable, true ), // this group
