@@ -13,6 +13,14 @@ import { getWebPartHelpElement } from '../CoreFPS/PropPaneHelp';
 import { getBannerPages, } from './HelpPanel/AllContent';
 import { IBannerPages } from "../fpsReferences";
 
+
+import { createPerformanceTableVisitor, repoLink } from '../fpsReferences';
+
+//For whatever reason, THIS NEEDS TO BE CALLED Directly and NOT through fpsReferences or it gives error.
+import { refreshPanelHTML } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/WebPartRenderBannerV2';
+import { ILoadPerformance, startPerformOp, updatePerformanceEnd } from "../fpsReferences";
+
+
 //Use this to add more console.logs for this component
 const urlParams : URLSearchParams = new URLSearchParams( window.location.search );
 const fpsconsole : boolean = urlParams.get( 'fpsconsole' ) === 'true' ? true : false;
@@ -21,12 +29,36 @@ const consolePrefix: string = 'fpsconsole: FpsCore115Banner';
 
 export default class FpsCore115Banner extends React.Component<IFpsCore115BannerProps, IFpsCore115BannerState> {
 
+  private _performance: ILoadPerformance = null;
+  private _bonusHTML: JSX.Element = null;
+
   private _webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
   private _contentPages : IBannerPages = getBannerPages( this.props.bannerProps );
+
+  private _newRefreshId() {
+
+    const startTime = new Date();
+    const refreshId = startTime.toISOString().replace('T', ' T'); // + ' ~ ' + startTime.toLocaleTimeString();
+    return refreshId;
+
+  }
 
   private _updatePinState( newValue ) {
     this.setState({ pinState: newValue, });
   }
+
+  /***
+ *    d8b   db d88888b  .d8b.  d8888b.      d88888b  .d8b.  d8888b.      d88888b db      d88888b 
+ *    888o  88 88'     d8' `8b 88  `8D      88'     d8' `8b 88  `8D      88'     88      88'     
+ *    88V8o 88 88ooooo 88ooo88 88oobY'      88ooo   88ooo88 88oobY'      88ooooo 88      88ooooo 
+ *    88 V8o88 88~~~~~ 88~~~88 88`8b        88~~~   88~~~88 88`8b        88~~~~~ 88      88~~~~~ 
+ *    88  V888 88.     88   88 88 `88.      88      88   88 88 `88.      88.     88booo. 88.     
+ *    VP   V8P Y88888P YP   YP 88   YD      YP      YP   YP 88   YD      Y88888P Y88888P Y88888P 
+ *                                                                                               
+ *                                                                                               
+ */
+
+   private _farBannerElements = [];
 
  /***
 *     .o88b.  .d88b.  d8b   db .d8888. d888888b d8888b. db    db  .o88b. d888888b  .d88b.  d8888b. 
@@ -43,52 +75,132 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
   public constructor(props:IFpsCore115BannerProps){
     super(props);
 
+    if ( this._performance === null ) { this._performance = this.props.performance;  }
+
+    //Update the _bonusHTML if you want now
+    this._bonusHTML = createPerformanceTableVisitor( this._performance, [] );
+
     this.state = {
       pinState: this.props.fpsPinMenu.defPinState ? this.props.fpsPinMenu.defPinState : 'normal',
       showDevHeader: false,
       lastStateChange: '', 
       analyticsWasExecuted: false,
+      refreshId: this._newRefreshId(),
+      debugMode: false,
+      showSpinner: false,
 
-    };
+      };
   }
 
   public componentDidMount() {
-    if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidMount` );
+      if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidMount` );
+    
+      //Start tracking performance
+      this._performance.fetch1 = startPerformOp( 'fetch1 TitleText', this.props.displayMode );
+      //Do async code here
 
-    const analyticsWasExecuted = saveViewAnalytics( 'FPS Core115 Banner View', 'didMount' , this.props, this.state.analyticsWasExecuted );
+      //End tracking performance
+      this._performance.fetch1 = updatePerformanceEnd( this._performance.fetch1, true );
 
-    if ( this.state.analyticsWasExecuted !==  analyticsWasExecuted ) {
-      this.setState({ analyticsWasExecuted: analyticsWasExecuted });
+      //Update the _bonusHTML if you want now
+      this._bonusHTML = createPerformanceTableVisitor( this._performance, [] );
+
+      const analyticsWasExecuted = saveViewAnalytics( 'FPS Core114 Banner View', 'didMount' , this.props, this.state.analyticsWasExecuted );
+
+      if ( this.state.analyticsWasExecuted !==  analyticsWasExecuted ) {
+        this.setState({ analyticsWasExecuted: analyticsWasExecuted });
+      }
+
+    }
+
+    
+
+  //        
+    /***
+   *         d8888b. d888888b d8888b.      db    db d8888b. d8888b.  .d8b.  d888888b d88888b 
+   *         88  `8D   `88'   88  `8D      88    88 88  `8D 88  `8D d8' `8b `~~88~~' 88'     
+   *         88   88    88    88   88      88    88 88oodD' 88   88 88ooo88    88    88ooooo 
+   *         88   88    88    88   88      88    88 88~~~   88   88 88~~~88    88    88~~~~~ 
+   *         88  .8D   .88.   88  .8D      88b  d88 88      88  .8D 88   88    88    88.     
+   *         Y8888D' Y888888P Y8888D'      ~Y8888P' 88      Y8888D' YP   YP    YP    Y88888P 
+   *                                                                                         
+   *                                                                                         
+   */
+
+  public componentDidUpdate(prevProps){
+
+    if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidUpdate` );
+
+    const refresh = this.props.displayMode !== prevProps.displayMode ? true : false;
+
+    //refresh these privates when the prop changes warrent it
+    if ( refresh === true ) {
+      this._webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
+      this._contentPages = getBannerPages( this.props.bannerProps );
+    }
+    
+
+    /**
+     * This section is needed if you want to track performance in the react component.
+     *    In the case of ALVFM, I do the following:
+     *    this._performance.fetch1 = startPerformOp( <=== Starts tracking perforamnce
+     *    ... Stuff to do
+     *    this._performance.fetch1 = updatePerformanceEnd( <=== ENDS tracking performance
+     *    this._replacePanelHTML = refreshPanelHTML( <=== This updates the performance panel content
+     */
+
+      if ( refresh === true ) {
+      //Start tracking performance item
+      this._performance.fetch2 = startPerformOp( 'fetch2 TitleText', this.props.displayMode );
+
+      //Do async code here
+
+      //End tracking performance
+      this._performance.fetch2 = updatePerformanceEnd( this._performance.fetch2, true );
+
+      //Update the _bonusHTML if you want now
+      this._bonusHTML = createPerformanceTableVisitor( this._performance, [] );
+
+      if ( fpsconsole === true ) console.log('React componentDidUpdate - this._performance:', JSON.parse(JSON.stringify(this._performance)) );
+      
     }
 
   }
 
-  
+  // public async _updatePerformance () {
+  public _updatePerformance () {
 
-//        
-  /***
- *         d8888b. d888888b d8888b.      db    db d8888b. d8888b.  .d8b.  d888888b d88888b 
- *         88  `8D   `88'   88  `8D      88    88 88  `8D 88  `8D d8' `8b `~~88~~' 88'     
- *         88   88    88    88   88      88    88 88oodD' 88   88 88ooo88    88    88ooooo 
- *         88   88    88    88   88      88    88 88~~~   88   88 88~~~88    88    88~~~~~ 
- *         88  .8D   .88.   88  .8D      88b  d88 88      88  .8D 88   88    88    88.     
- *         Y8888D' Y888888P Y8888D'      ~Y8888P' 88      Y8888D' YP   YP    YP    Y88888P 
- *                                                                                         
- *                                                                                         
- */
 
-public componentDidUpdate(prevProps){
+    /**
+     * This section is needed if you want to track performance in the react component.
+     *    In the case of ALVFM, I do the following:
+     *    this._performance.fetch1 = startPerformOp( <=== Starts tracking perforamnce
+     *    ... Stuff to do
+     *    this._performance.fetch1 = updatePerformanceEnd( <=== ENDS tracking performance
+     *    this._replacePanelHTML = refreshPanelHTML( <=== This updates the performance panel content
+     */
 
-  if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidUpdate` );
+    //Start tracking performance
+    this._performance.fetch3 = startPerformOp( 'fetch3 TitleText', this.props.displayMode );
+    //Do async code here
 
-  const refresh = this.props.displayMode !== prevProps.displayMode ? true : false;
+    //End tracking performance
+    this._performance.fetch3 = updatePerformanceEnd( this._performance.fetch3, true );
 
-  if ( refresh === true ) {
-    this._webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
-    this._contentPages = getBannerPages( this.props.bannerProps );
+    //Update the _bonusHTML if you want now
+    this._bonusHTML = createPerformanceTableVisitor( this._performance, [] );
+
+    if ( fpsconsole === true ) console.log('React - _updatePerformance:', JSON.parse(JSON.stringify(this._performance)) );
+
+    //PERFORMANCE COMMENT:  YOU NEED TO UPDATE STATE HERE FOR IT TO REFLECT IN THE BANNER.
+    this.setState({ 
+      refreshId: this._newRefreshId(),
+    });
+
+    return true;
+
   }
-  
-}
+
 
   public render(): React.ReactElement<IFpsCore115BannerProps> {
     const {
@@ -101,18 +213,46 @@ public componentDidUpdate(prevProps){
 
     const devHeader = this.state.showDevHeader === true ? <div><b>Props: </b> { `this.props.lastPropChange , this.props.lastPropDetailChange` } - <b>State: lastStateChange: </b> { this.state.lastStateChange  } </div> : null ;
 
+    /***
+     *    d8888b.  .d8b.  d8b   db d8b   db d88888b d8888b.      d88888b db      d88888b .88b  d88. d88888b d8b   db d888888b 
+     *    88  `8D d8' `8b 888o  88 888o  88 88'     88  `8D      88'     88      88'     88'YbdP`88 88'     888o  88 `~~88~~' 
+     *    88oooY' 88ooo88 88V8o 88 88V8o 88 88ooooo 88oobY'      88ooooo 88      88ooooo 88  88  88 88ooooo 88V8o 88    88    
+     *    88~~~b. 88~~~88 88 V8o88 88 V8o88 88~~~~~ 88`8b        88~~~~~ 88      88~~~~~ 88  88  88 88~~~~~ 88 V8o88    88    
+     *    88   8D 88   88 88  V888 88  V888 88.     88 `88.      88.     88booo. 88.     88  88  88 88.     88  V888    88    
+     *    Y8888P' YP   YP VP   V8P VP   V8P Y88888P 88   YD      Y88888P Y88888P Y88888P YP  YP  YP Y88888P VP   V8P    YP    
+     *                                                                                                                        
+     *                                                                                                                        
+     */
+
+
+    // initiate array for adding more buttons here.  If not needed, can be commented out
+    const farBannerElementsArray = [...this._farBannerElements,
+      //  ...[<div title={'Show Code Details'}><Icon iconName={ 'Code' } onClick={ this.toggleDebugMode.bind(this) } style={ bannerProps.bannerCmdReactCSS }></Icon></div>],
+    ];
+
+    //Setting showTricks to false here ( skipping this line does not have any impact on bug #90 )
+    if ( this.props.bannerProps.beAUser === false ) {
+      farBannerElementsArray.push( 
+        // <div title={'Show Debug Info'}><Icon iconName='TestAutoSolid' onClick={ this.toggleDebugMode.bind(this) } style={ this.debugCmdStyles }></Icon></div>
+      );
+    }
+
     const Banner = <FetchBanner 
+
+      bonusHTML={ this._bonusHTML }
+
       parentProps={ this.props }
       parentState={ this.state }
 
       nearBannerElementsArray={ [] }
-      farBannerElementsArray={ [] }
+      farBannerElementsArray={ farBannerElementsArray }
 
       contentPages={ this._contentPages }
       WebPartHelpElement={ this._webPartHelpElement }
 
       updatePinState = { this._updatePinState.bind(this) }
       pinState = { this.state.pinState }
+
     />;
 
     return (
@@ -120,7 +260,7 @@ public componentDidUpdate(prevProps){
         { devHeader }
         { Banner }
         <div className={styles.welcome}>
-          <img alt="" src={isDarkTheme ? require('../assets/welcome-dark.png') : require('../assets/welcome-light.png')} className={styles.welcomeImage} />
+          <img  onClick={ this._doSomething.bind(this)} alt="" src={isDarkTheme ? require('../assets/welcome-dark.png') : require('../assets/welcome-light.png')} className={styles.welcomeImage} />
           <h2>Well done, {escape(userDisplayName)}!</h2>
           <div>{environmentMessage}</div>
           <div>Web part property value: <strong>{escape(description)}</strong></div>
@@ -143,6 +283,10 @@ public componentDidUpdate(prevProps){
         </div>
       </section>
     );
+  }
+
+  private _doSomething() {
+    const result = this._updatePerformance();
   }
 
 }

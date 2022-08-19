@@ -1,3 +1,14 @@
+/***
+ *    db    db  .d88b.       d888888b .88b  d88. d8888b.  .d88b.  d8888b. d888888b .d8888. 
+ *    `8b  d8' .8P  Y8.        `88'   88'YbdP`88 88  `8D .8P  Y8. 88  `8D `~~88~~' 88'  YP 
+ *     `8bd8'  88    88         88    88  88  88 88oodD' 88    88 88oobY'    88    `8bo.   
+ *       88    88    88         88    88  88  88 88~~~   88    88 88`8b      88      `Y8b. 
+ *       88    `8b  d8'        .88.   88  88  88 88      `8b  d8' 88 `88.    88    db   8D 
+ *       YP     `Y88P'       Y888888P YP  YP  YP 88       `Y88P'  88   YD    YP    `8888Y' 
+ *                                                                                         
+ *                                                                                         
+ */
+
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
@@ -22,8 +33,6 @@ import { IReadonlyTheme } from '@microsoft/sp-component-base';
  */
 
 // STANDARD PROJECT IMPORTS
-
-
 import * as strings from 'FpsCore115BannerWebPartStrings';
 import FpsCore115Banner from './components/FpsCore115Banner';
 import { IFpsCore115BannerWebPartProps,  } from './IFpsCore115BannerWebPartProps';
@@ -106,6 +115,8 @@ import { buildExportProps, buildFPSAnalyticsProps , } from './CoreFPS/BuildExpor
 //For whatever reason, THIS NEEDS TO BE CALLED Directly and NOT through fpsReferences or it gives error.
 import { mainWebPartRenderBannerSetup, refreshPanelHTML } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/WebPartRenderBannerV2';
 
+import { visitorPanelInfo, } from './fpsReferences';
+import { createPerformanceTableVisitor } from './fpsReferences';
 
 /***
  *    d8888b. d8888b.  .d88b.  d8888b.       d888b  d8888b.  .d88b.  db    db d8888b. .d8888. 
@@ -197,7 +208,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
     //2022-04-07:  Intent of this is a one-time per instance to 'become a reader' level user.  aka, hide banner buttons that reader won't see
     private _beAReader: boolean = false; 
 
-    private _fetchInfo: any = null; // Originally IFetchInfo if it has it
+    // private _fetchInfo: any = null; // Originally IFetchInfo if it has it
 
 
     protected onInit(): Promise<void> {
@@ -215,7 +226,10 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
        *                                                                                                                         
        *                                                                                                                         
        */
-  
+
+        this._performance = createBasePerformanceInit( this.displayMode, false );
+        this._performance.superOnInit = startPerformOp( 'superOnInit', this.displayMode );
+
         //NEED TO APPLY THIS HERE as well as follow-up in render for it to not visibly change
         this._sitePresets = applyPresetCollectionDefaults( this._sitePresets, PreConfiguredProps, this.properties, this.context.pageContext.web.serverRelativeUrl ) ;
   
@@ -225,7 +239,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
   
         //Added for ALVFinMan
         // DEFAULTS SECTION:  Performance   <<< ================================================================
-        this._performance = createBasePerformanceInit( this.displayMode, false );
+
 
         this._FPSUser = getFPSUser( this.context as any, trickyEmails, this._trickyApp ) ;
         console.log( 'FPSUser: ', this._FPSUser );
@@ -241,6 +255,8 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
             displayMode: this.displayMode,
             doHeadings: false } );  //doHeadings is currently only used in PageInfo so set to false.
   
+        this._performance.superOnInit = updatePerformanceEnd( this._performance.superOnInit, true );
+
       });
   
     }
@@ -279,11 +295,6 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
        this._forceBanner, false, null, this._keysToShow, true, true );
 
     if ( bannerProps.showBeAUserIcon === true ) { bannerProps.beAUserFunction = this._beAUserFunction.bind(this); }
-    // console.log('mainWebPart: baseFetchInfo ~ 308',   );
-    // this._fetchInfo = baseFetchInfo( '', this._performance );
-    // This gets done a second time if you do not want to pass it in the first time.
-    // bannerProps.replacePanelHTML = visitorPanelInfo( this.properties, repoLink, '', '', createPerformanceTableVisitor( this._fetchInfo.performance ) );
-    console.log('mainWebPart: createElement ~ 316',   );
 
 
   /**
@@ -293,9 +304,6 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
    */
 
    this._performance.renderWebPartStart = updatePerformanceEnd( this._performance.renderWebPartStart, true );
-
-   // This gets done a second time if you do not want to pass it in the first time.
-   bannerProps.replacePanelHTML = refreshPanelHTML( bannerProps as any, repoLink, this._performance, this._keysToShow );   console.log('mainWebPart: createElement ~ 316',   );
 
 
     const element: React.ReactElement<IFpsCore115BannerProps> = React.createElement(
@@ -315,6 +323,8 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
         // pageContext: this.context.pageContext, //This can be found in the bannerProps now
         context: this.context,
         displayMode: this.displayMode,
+
+        performance: this._performance, //Alternatively, use this if available (like ALVFM): _fetchInfo.performance,
 
         // saveLoadAnalytics: this.saveLoadAnalytics.bind(this),
         FPSPropsObj: buildFPSAnalyticsProps( this.properties, this._wpInstanceID, this.context.pageContext.web.serverRelativeUrl ),

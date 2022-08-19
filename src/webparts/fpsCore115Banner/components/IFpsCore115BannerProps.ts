@@ -1,4 +1,4 @@
-import { IFPSCorePinMeReactComponentProps, IFPSCorePinMeReactComponentState } from '../fpsReferences';
+import { IFPSCorePinMeReactComponentProps, IFPSCorePinMeReactComponentState, ILoadPerformance } from '../fpsReferences';
 
 
 export interface IFpsCore115BannerProps  extends IFPSCorePinMeReactComponentProps {
@@ -7,6 +7,9 @@ export interface IFpsCore115BannerProps  extends IFPSCorePinMeReactComponentProp
   environmentMessage: string;
   hasTeamsContext: boolean;
   userDisplayName: string;
+
+  performance: ILoadPerformance;
+  
 }
 
 
