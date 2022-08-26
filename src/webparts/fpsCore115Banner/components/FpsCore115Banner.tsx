@@ -168,19 +168,19 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 
      const updateThis = this._performance.fetch2 ? 'fetch3' : 'fetch2';
 
-    //Start tracking performance
-    this._performance.fetch3 = startPerformOp( 'fetch3 TitleText', this.props.displayMode );
+     //Start tracking performance
+     this._performance[updateThis] = startPerformOp( `${updateThis} TitleText`, this.props.displayMode );
 
-    /**
-     *       Do async code here
-     */
+     /**
+      *       Do async code here
+      */
 
-    //End tracking performance
-    this._performance.fetch3 = updatePerformanceEnd( this._performance.fetch3, true );
+     //End tracking performance
+     this._performance[updateThis] = updatePerformanceEnd( this._performance[updateThis], true );
 
-    alert(`${[updateThis]} should now be updated`);
+     alert(`${[updateThis]} should now be updated`);
 
-    if ( fpsconsole === true ) console.log('React - _updatePerformance:', JSON.parse(JSON.stringify(this._performance)) );
+     if ( fpsconsole === true ) console.log('React - _updatePerformance:', JSON.parse(JSON.stringify(this._performance)) );
 
     //PERFORMANCE COMMENT:  YOU NEED TO UPDATE STATE HERE FOR IT TO REFLECT IN THE BANNER.
     this.setState({ 
@@ -226,7 +226,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
         // <div title={'Show Debug Info'}><Icon iconName='TestAutoSolid' onClick={ this.toggleDebugMode.bind(this) } style={ this.debugCmdStyles }></Icon></div>
       );
     }
-    
+
     if ( fpsconsole === true ) console.log('React Render - this._performance:', JSON.parse(JSON.stringify(this._performance)) );
 
     const Banner = <FetchBanner 
