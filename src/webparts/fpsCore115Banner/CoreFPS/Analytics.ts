@@ -14,7 +14,7 @@ import { DisplayMode, } from '@microsoft/sp-core-library';
  */
 
  import { IFpsCore115BannerProps } from '../components/IFpsCore115BannerProps';
- import { saveAnalytics3, IZLoadAnalytics, IZSentAnalytics, } from '../fpsReferences';
+ import { saveAnalytics3, IZLoadAnalytics, IZSentAnalytics,  ILoadPerformance, getMinPerformanceString } from '../fpsReferences';
  
  
  /***
@@ -53,7 +53,7 @@ import { DisplayMode, } from '@microsoft/sp-core-library';
  *                                                                                
  */
 
-export function saveViewAnalytics( Title: string, Result: string, thisProps: IFpsCore115BannerProps, analyticsWasExecuted: boolean) : boolean {
+export function saveViewAnalytics( Title: string, Result: string, thisProps: IFpsCore115BannerProps, analyticsWasExecuted: boolean, performanceObj: ILoadPerformance) : boolean {
 
     if ( analyticsWasExecuted === true ) {
       console.log('saved view info already');
@@ -84,6 +84,8 @@ export function saveViewAnalytics( Title: string, Result: string, thisProps: IFp
       console.log( 'zzzRichText1Obj:', zzzRichText1Obj);
       console.log( 'zzzRichText2Obj:', zzzRichText2Obj);
       console.log( 'zzzRichText3Obj:', zzzRichText3Obj);
+
+      const performance : string = getMinPerformanceString( performanceObj );
 
       let zzzRichText1 = null;
       let zzzRichText2 = null;
@@ -134,6 +136,8 @@ export function saveViewAnalytics( Title: string, Result: string, thisProps: IFp
         zzzRichText2: zzzRichText2,
         zzzRichText3: zzzRichText3,
 
+        performance: performance,
+        
         FPSProps: FPSProps,
 
       };
