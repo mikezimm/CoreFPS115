@@ -229,7 +229,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
 
        // DEFAULTS SECTION:  Performance   <<< ================================================================
        this._performance = createBasePerformanceInit( this.displayMode, false );
-        this._performance.superOnInit = startPerformOp( 'superOnInit', this.displayMode );
+        this._performance.ops.superOnInit = startPerformOp( 'superOnInit', this.displayMode );
 
         //NEED TO APPLY THIS HERE as well as follow-up in render for it to not visibly change
         this._sitePresets = applyPresetCollectionDefaults( this._sitePresets, PreConfiguredProps, this.properties, this.context.pageContext.web.serverRelativeUrl ) ;
@@ -252,7 +252,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
             displayMode: this.displayMode,
             doHeadings: false } );  //doHeadings is currently only used in PageInfo so set to false.
   
-        this._performance.superOnInit = updatePerformanceEnd( this._performance.superOnInit, true );
+        this._performance.ops.superOnInit = updatePerformanceEnd( this._performance.ops.superOnInit, true,666 );
 
       });
   
@@ -277,7 +277,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
    * PERFORMANCE - START
    * This is how you can start a performance snapshot - make the _performance.KEYHERE = startPerforOp('KEYHERE', this.displayMode)
    */ 
-   this._performance.renderWebPartStart = startPerformOp( 'renderWebPartStart', this.displayMode );
+   this._performance.ops.renderWebPartStart = startPerformOp( 'renderWebPartStart', this.displayMode );
 
 
     renderCustomStyles( 
@@ -300,7 +300,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
    * NOTE IN THIS CASE to do it before you refreshPanelHTML :)
    */
 
-   this._performance.renderWebPartStart = updatePerformanceEnd( this._performance.renderWebPartStart, true );
+   this._performance.ops.renderWebPartStart = updatePerformanceEnd( this._performance.ops.renderWebPartStart, true, 555 );
 
 
     const element: React.ReactElement<IFpsCore115BannerProps> = React.createElement(
@@ -480,7 +480,7 @@ export default class FpsCore115BannerWebPart extends BaseClientSideWebPart<IFpsC
             FPSBanner3VisHelpGroup( this.context, this.onPropertyPaneFieldChanged, this.properties ),
             FPSBanner4BasicGroup( this._forceBanner , this._modifyBannerTitle, this.properties.showBanner, this.properties.infoElementChoice === 'Text' ? true : false, true, true ),
             FPSBanner3NavGroup(),
-            FPSBanner3ThemeGroup( this._modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, ),
+            FPSBanner3ThemeGroup( this._modifyBannerStyle, this.properties.showBanner, this.properties.lockStyles, false ),
             FPSOptionsGroupBasic( false, true, true, true, this.properties.allSectionMaxWidthEnable, true, this.properties.allSectionMarginEnable, true ), // this group
             FPSOptionsExpando( this.properties.enableExpandoramic, this.properties.enableExpandoramic,null, null ),
   

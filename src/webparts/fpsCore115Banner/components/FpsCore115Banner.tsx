@@ -8,6 +8,7 @@ import { saveViewAnalytics } from '../CoreFPS/Analytics';
 
 // import FetchBanner from '../CoreFPS/FetchBannerElement';
 import FetchBanner from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/FetchBannerElement';
+import { ISpecialMessage, specialUpgrade } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/special/interface';
 
 import { getWebPartHelpElement } from '../CoreFPS/PropPaneHelp';
 import { getBannerPages, } from './HelpPanel/AllContent';
@@ -86,13 +87,13 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
       if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidMount` );
     
       //Start tracking performance
-      this._performance.fetch1 = startPerformOp( 'fetch1 TitleText', this.props.displayMode );
+      this._performance.ops.fetch1 = startPerformOp( 'fetch1 TitleText', this.props.displayMode );
       //Do async code here
 
       //End tracking performance
-      this._performance.fetch1 = updatePerformanceEnd( this._performance.fetch1, true );
+      this._performance.ops.fetch1 = updatePerformanceEnd( this._performance.ops.fetch1, true, 777 );
 
-      const analyticsWasExecuted = saveViewAnalytics( 'FPS Core114 Banner View', 'didMount' , this.props, this.state.analyticsWasExecuted );
+      const analyticsWasExecuted = saveViewAnalytics( 'FPS Core114 Banner View', 'didMount' , this.props, this.state.analyticsWasExecuted, this._performance );
 
       if ( this.state.analyticsWasExecuted !==  analyticsWasExecuted ) {
         this.setState({ analyticsWasExecuted: analyticsWasExecuted });
@@ -130,22 +131,22 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
     /**
      * This section is needed if you want to track performance in the react component.
      *    In the case of ALVFM, I do the following:
-     *    this._performance.fetch1 = startPerformOp( <=== Starts tracking perforamnce
+     *    this._performance.ops.fetch1 = startPerformOp( <=== Starts tracking perforamnce
      *    ... Stuff to do
-     *    this._performance.fetch1 = updatePerformanceEnd( <=== ENDS tracking performance
+     *    this._performance.ops.fetch1 = updatePerformanceEnd( <=== ENDS tracking performance
      *    this._replacePanelHTML = refreshPanelHTML( <=== This updates the performance panel content
      */
 
       if ( refresh === true ) {
       //Start tracking performance item
-      this._performance.fetch2 = startPerformOp( 'fetch2 TitleText', this.props.displayMode );
+      this._performance.ops.fetch2 = startPerformOp( 'fetch2 TitleText', this.props.displayMode );
 
       /**
        *       Do async code here
        */
 
       //End tracking performance
-      this._performance.fetch2 = updatePerformanceEnd( this._performance.fetch2, true );
+      this._performance.ops.fetch2 = updatePerformanceEnd( this._performance.ops.fetch2, true, 999 );
 
       if ( fpsconsole === true ) console.log('React componentDidUpdate - this._performance:', JSON.parse(JSON.stringify(this._performance)) );
       
@@ -160,23 +161,23 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
     /**
      * This section is needed if you want to track performance in the react component.
      *    In the case of ALVFM, I do the following:
-     *    this._performance.fetch1 = startPerformOp( <=== Starts tracking perforamnce
+     *    this._performance.ops.fetch1 = startPerformOp( <=== Starts tracking perforamnce
      *    ... Stuff to do
-     *    this._performance.fetch1 = updatePerformanceEnd( <=== ENDS tracking performance
+     *    this._performance.ops.fetch1 = updatePerformanceEnd( <=== ENDS tracking performance
      *    this._replacePanelHTML = refreshPanelHTML( <=== This updates the performance panel content
      */
 
-     const updateThis = this._performance.fetch2 ? 'fetch3' : 'fetch2';
+     const updateThis = this._performance.ops.fetch2 ? 'fetch3' : 'fetch2';
 
      //Start tracking performance
-     this._performance[updateThis] = startPerformOp( `${updateThis} TitleText`, this.props.displayMode );
+     this._performance.ops[updateThis] = startPerformOp( `${updateThis} TitleText`, this.props.displayMode );
 
      /**
       *       Do async code here
       */
 
      //End tracking performance
-     this._performance[updateThis] = updatePerformanceEnd( this._performance[updateThis], true );
+     this._performance.ops[updateThis] = updatePerformanceEnd( this._performance.opps[updateThis], true, 888 );
 
      alert(`${[updateThis]} should now be updated`);
 
@@ -227,6 +228,11 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
       );
     }
 
+    // const FPSUser : IFPSUser = this.props.bannerProps.FPSUser;
+    // const showSpecial = FPSUser.manageWeb === true || FPSUser.managePermissions === true || FPSUser.manageLists === true ? true : false;
+    // const Special : ISpecialMessage = showSpecial === true ? specialUpgrade( 'warn', '/sites/TheSharePointHub/SitePages/DrillDown-WebPart-Upgrade---v2.aspx', ) : undefined;
+    // Special.style = { color: 'black', background: 'limegreen' };
+
     if ( fpsconsole === true ) console.log('React Render - this._performance:', JSON.parse(JSON.stringify(this._performance)) );
 
     const Banner = <FetchBanner 
@@ -243,6 +249,8 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 
       contentPages={ this._contentPages }
       WebPartHelpElement={ this._webPartHelpElement }
+
+      // SpecialMessage = { Special }
 
       updatePinState = { this._updatePinState.bind(this) }
       pinState = { this.state.pinState }
