@@ -77,9 +77,9 @@ export function saveViewAnalytics( Title: string, Result: string, thisProps: IFp
 
       };
 
-      const zzzRichText1Obj = null;
-      const zzzRichText2Obj = null;
-      const zzzRichText3Obj = null;
+      const zzzRichText1Obj: any = null;
+      const zzzRichText2Obj: any = null;
+      const zzzRichText3Obj: any = null;
 
       console.log( 'zzzRichText1Obj:', zzzRichText1Obj);
       console.log( 'zzzRichText2Obj:', zzzRichText2Obj);
@@ -87,9 +87,9 @@ export function saveViewAnalytics( Title: string, Result: string, thisProps: IFp
 
       const performance : string = getMinPerformanceString( performanceObj );
 
-      let zzzRichText1 = null;
-      let zzzRichText2 = null;
-      let zzzRichText3 = null;
+      let zzzRichText1: string = null;
+      let zzzRichText2: string = null;
+      let zzzRichText3: string = null;
 
       //This will get rid of all the escaped characters in the summary (since it's all numbers)
       // let zzzRichText3 = ''; //JSON.stringify( fetchInfo.summary ).replace('\\','');
