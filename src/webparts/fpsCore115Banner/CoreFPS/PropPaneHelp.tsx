@@ -18,12 +18,12 @@ const SampleRelatedInfoProps =         {
 };
 
 
-export function putObjectIntoJSON ( obj: any, name: string = null ) {
+export function putObjectIntoJSON ( obj: any, name: string = null ): JSX.Element {
   // return <ReactJson src={ obj } name={ 'panelItem' } collapsed={ true } displayDataTypes={ true } displayObjectSize={ true } enableClipboard={ true } style={{ padding: '20px 0px' }}/>;
   return <ReactJson src={ obj } name={ name } collapsed={ false } displayDataTypes={ false } displayObjectSize={ false } enableClipboard={ true } style={{ padding: '20px 0px' }} theme= { 'rjv-default' } indentWidth={ 2}/>;
 }
 
-export function getWebPartHelpElement (  ) {
+export function getWebPartHelpElement (  ): JSX.Element {
 
   const WebPartHelpElement = <PivotItem headerText={ 'RelatedInfo' } > 
   <div className={ 'fps-pph-content' }>
