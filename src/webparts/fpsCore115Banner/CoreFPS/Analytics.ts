@@ -9,14 +9,15 @@ import { DisplayMode, } from '@microsoft/sp-core-library';
  *    88~~~   88~~~     `Y8b.      88~~~   88`8b   88~~~~~   `Y8b. 88~~~~~    88      `Y8b. 
  *    88      88      db   8D      88      88 `88. 88.     db   8D 88.        88    db   8D 
  *    YP      88      `8888Y'      88      88   YD Y88888P `8888Y' Y88888P    YP    `8888Y' 
- *                                                                                          
- *                                                                                          
+ *          
+ *          
  */
 
  import { IFpsCore115BannerProps } from '../components/IFpsCore115BannerProps';
- import { saveAnalytics3, IZLoadAnalytics, IZSentAnalytics,  ILoadPerformance, getMinPerformanceString } from '../fpsReferences';
- 
- 
+ import { ILoadPerformance, } from '../fpsMinIndex';
+ import { saveAnalytics3, getMinPerformanceString } from '@mikezimm/fps-library-v2/lib/pnpjs/Logging/saveAnalytics';
+ import { IZLoadAnalytics, IZSentAnalytics, } from '@mikezimm/fps-library-v2/lib/pnpjs/Logging/interfaces';
+
  /***
   *    db       .d88b.   .o88b.  .d8b.  db      
   *    88      .8P  Y8. d8P  Y8 d8' `8b 88      
@@ -27,20 +28,9 @@ import { DisplayMode, } from '@microsoft/sp-core-library';
   *                                             
   *                                             
   */
- 
- export const analyticsList: string = "FPSPageInfoViews";
+
  export const analyticsWeb: string = "/sites/Templates/Analytics/";
- 
- /***
-  *     .d8b.  d8b   db  .d8b.  db      db    db d888888b d888888b  .o88b. .d8888. 
-  *    d8' `8b 888o  88 d8' `8b 88      `8b  d8' `~~88~~'   `88'   d8P  Y8 88'  YP 
-  *    88ooo88 88V8o 88 88ooo88 88       `8bd8'     88       88    8P      `8bo.   
-  *    88~~~88 88 V8o88 88~~~88 88         88       88       88    8b        `Y8b. 
-  *    88   88 88  V888 88   88 88booo.    88       88      .88.   Y8b  d8 db   8D 
-  *    YP   YP VP   V8P YP   YP Y88888P    YP       YP    Y888888P  `Y88P' `8888Y' 
-  *                                                                                
-  *                                                                                
-  */
+ export const analyticsList: string = "FPSPageInfoViews";
 
 /***
  *     .d8b.  d8b   db  .d8b.  db      db    db d888888b d888888b  .o88b. .d8888. 
@@ -49,19 +39,19 @@ import { DisplayMode, } from '@microsoft/sp-core-library';
  *    88~~~88 88 V8o88 88~~~88 88         88       88       88    8b        `Y8b. 
  *    88   88 88  V888 88   88 88booo.    88       88      .88.   Y8b  d8 db   8D 
  *    YP   YP VP   V8P YP   YP Y88888P    YP       YP    Y888888P  `Y88P' `8888Y' 
- *                                                                                
- *                                                                                
+ *
+ *
  */
 
-export function saveViewAnalytics( Title: string, Result: string, thisProps: IFpsCore115BannerProps, analyticsWasExecuted: boolean, performanceObj: ILoadPerformance) : boolean {
+export function saveViewAnalytics( Title: string, Result: string, parentProps: IFpsCore115BannerProps, analyticsWasExecuted: boolean, performanceObj: ILoadPerformance) : boolean {
 
     if ( analyticsWasExecuted === true ) {
       console.log('saved view info already');
       return true;
 
     } else {
-
-    const { fpsPinMenu, context, FPSPropsObj, displayMode } = thisProps;
+    const { bannerProps } = parentProps;
+    const { fpsPinMenu, context, displayMode , analyticsProps } = bannerProps;
 
       // Do not save anlytics while in Edit Mode... only after save and page reloads
       if ( displayMode === DisplayMode.Edit ) { return; }
@@ -104,8 +94,6 @@ export function saveViewAnalytics( Title: string, Result: string, thisProps: IFp
       console.log('zzzRichText2 length:', zzzRichText2 ? zzzRichText2.length : 0 );
       console.log('zzzRichText3 length:', zzzRichText3 ? zzzRichText3.length : 0 );
 
-      const FPSProps = JSON.stringify( FPSPropsObj );
-
       const saveObject: IZSentAnalytics = {
         loadProperties: loadProperties,
 
@@ -137,8 +125,8 @@ export function saveViewAnalytics( Title: string, Result: string, thisProps: IFp
         zzzRichText3: zzzRichText3,
 
         performance: performance,
-        
-        FPSProps: FPSProps,
+
+        FPSProps: analyticsProps,
 
       };
 

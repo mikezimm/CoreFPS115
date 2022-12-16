@@ -1,7 +1,9 @@
-import { IFPSCorePinMeReactComponentProps, IFPSCorePinMeReactComponentState, ILoadPerformance } from '../fpsReferences';
+import { IFPSCoreReactComponentProps } from '@mikezimm/fps-library-v2/lib/banner/mainReact/ReactComponentProps';
+import { IFPSCorePinMeReactComponentState } from '@mikezimm/fps-library-v2/lib/banner/mainReact/ReactComponentState';
 
+import { ILoadPerformance } from '../fpsMinIndex';
 
-export interface IFpsCore115BannerProps  extends IFPSCorePinMeReactComponentProps {
+export interface IFpsCore115BannerProps  extends IFPSCoreReactComponentProps {
   description: string;
   isDarkTheme: boolean;
   environmentMessage: string;

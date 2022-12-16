@@ -7,14 +7,15 @@ import { IFpsCore115BannerProps, IFpsCore115BannerState } from './IFpsCore115Ban
 import { saveViewAnalytics } from '../CoreFPS/Analytics';
 
 // import FetchBanner from '../CoreFPS/FetchBannerElement';
-import FetchBanner from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/onNpm/FetchBannerElement';
-import { ISpecialMessage, specialUpgrade } from '@mikezimm/npmfunctions/dist/HelpPanelOnNPM/special/interface';
+import FetchBannerX from '@mikezimm/fps-library-v2/lib/banner/bannerX/FetchBannerX';
+import { createSpecialElement } from '@mikezimm/fps-library-v2/lib/banner/components/SpecialBanner/component';
+import { ISpecialMessage, } from '@mikezimm/fps-library-v2/lib/banner/components/SpecialBanner/interface';
 
 import { getWebPartHelpElement } from '../CoreFPS/PropPaneHelp';
 import { getBannerPages, } from './HelpPanel/AllContent';
-import { IBannerPages } from "../fpsReferences";
+import { IBannerPages, IPinMeState } from "../fpsMinIndex";
 
-import { ILoadPerformance, startPerformOp, updatePerformanceEnd } from "../fpsReferences";
+import { ILoadPerformance, startPerformOp, updatePerformanceEnd } from "../fpsMinIndex";
 
 //Use this to add more console.logs for this component
 const urlParams : URLSearchParams = new URLSearchParams( window.location.search );
@@ -26,10 +27,10 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 
   private _performance: ILoadPerformance = null;
 
-  private _webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
+  private _webPartHelpElement = getWebPartHelpElement( );
   private _contentPages : IBannerPages = getBannerPages( this.props.bannerProps );
 
-  private _newRefreshId() {
+  private _newRefreshId() :string  {
 
     const startTime = new Date();
     const refreshId = startTime.toISOString().replace('T', ' T'); // + ' ~ ' + startTime.toLocaleTimeString();
@@ -37,7 +38,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 
   }
 
-  private _updatePinState( newValue ) {
+  private _updatePinState( newValue :  IPinMeState ): void {
     this.setState({ pinState: newValue, });
   }
 
@@ -48,11 +49,11 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
  *    88 V8o88 88~~~~~ 88~~~88 88`8b        88~~~   88~~~88 88`8b        88~~~~~ 88      88~~~~~ 
  *    88  V888 88.     88   88 88 `88.      88      88   88 88 `88.      88.     88booo. 88.     
  *    VP   V8P Y88888P YP   YP 88   YD      YP      YP   YP 88   YD      Y88888P Y88888P Y88888P 
- *                                                                                               
- *                                                                                               
+ *               
+ *               
  */
 
-   private _farBannerElements = [];
+   private _farBannerElements: any[] = [];
 
  /***
 *     .o88b.  .d88b.  d8b   db .d8888. d888888b d8888b. db    db  .o88b. d888888b  .d88b.  d8888b. 
@@ -72,7 +73,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
     if ( this._performance === null ) { this._performance = this.props.performance;  }
 
     this.state = {
-      pinState: this.props.fpsPinMenu.defPinState ? this.props.fpsPinMenu.defPinState : 'normal',
+      pinState: this.props.bannerProps.fpsPinMenu.defPinState ? this.props.bannerProps.fpsPinMenu.defPinState : 'normal',
       showDevHeader: false,
       lastStateChange: '', 
       analyticsWasExecuted: false,
@@ -83,11 +84,11 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
       };
   }
 
-  public componentDidMount() {
+  public componentDidMount(): void {
       if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidMount` );
     
       //Start tracking performance
-      this._performance.ops.fetch1 = startPerformOp( 'fetch1 TitleText', this.props.displayMode );
+      this._performance.ops.fetch1 = startPerformOp( 'fetch1 TitleText', this.props.bannerProps.displayMode );
       //Do async code here
 
       //End tracking performance
@@ -111,19 +112,19 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
    *         88   88    88    88   88      88    88 88~~~   88   88 88~~~88    88    88~~~~~ 
    *         88  .8D   .88.   88  .8D      88b  d88 88      88  .8D 88   88    88    88.     
    *         Y8888D' Y888888P Y8888D'      ~Y8888P' 88      Y8888D' YP   YP    YP    Y88888P 
-   *                                                                                         
-   *                                                                                         
+   *         
+   *         
    */
 
-  public componentDidUpdate(prevProps){
+  public componentDidUpdate( prevProps: IFpsCore115BannerProps ): void {
 
     if ( fpsconsole === true ) console.log( `${consolePrefix} ~ componentDidUpdate` );
 
-    const refresh = this.props.displayMode !== prevProps.displayMode ? true : false;
+    const refresh = this.props.bannerProps.displayMode !== prevProps.bannerProps.displayMode ? true : false;
 
     //refresh these privates when the prop changes warrent it
     if ( refresh === true ) {
-      this._webPartHelpElement = getWebPartHelpElement( this.props.sitePresets );
+      this._webPartHelpElement = getWebPartHelpElement( );
       this._contentPages = getBannerPages( this.props.bannerProps );
     }
     
@@ -139,7 +140,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 
       if ( refresh === true ) {
       //Start tracking performance item
-      this._performance.ops.fetch2 = startPerformOp( 'fetch2 TitleText', this.props.displayMode );
+      this._performance.ops.fetch2 = startPerformOp( 'fetch2 TitleText', this.props.bannerProps.displayMode );
 
       /**
        *       Do async code here
@@ -155,7 +156,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
   }
 
   // public async _updatePerformance () {
-  public _updatePerformance () {
+  public _updatePerformance (): boolean  {
 
 
     /**
@@ -170,14 +171,14 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
      const updateThis = this._performance.ops.fetch2 ? 'fetch3' : 'fetch2';
 
      //Start tracking performance
-     this._performance.ops[updateThis] = startPerformOp( `${updateThis} TitleText`, this.props.displayMode );
+     this._performance.ops[updateThis] = startPerformOp( `${updateThis} TitleText`, this.props.bannerProps.displayMode );
 
      /**
       *       Do async code here
       */
 
      //End tracking performance
-     this._performance.ops[updateThis] = updatePerformanceEnd( this._performance.opps[updateThis], true, 888 );
+     this._performance.ops[updateThis] = updatePerformanceEnd( this._performance.ops[updateThis], true, 888 );
 
      alert(`${[updateThis]} should now be updated`);
 
@@ -211,8 +212,8 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
      *    88~~~b. 88~~~88 88 V8o88 88 V8o88 88~~~~~ 88`8b        88~~~~~ 88      88~~~~~ 88  88  88 88~~~~~ 88 V8o88    88    
      *    88   8D 88   88 88  V888 88  V888 88.     88 `88.      88.     88booo. 88.     88  88  88 88.     88  V888    88    
      *    Y8888P' YP   YP VP   V8P VP   V8P Y88888P 88   YD      Y88888P Y88888P Y88888P YP  YP  YP Y88888P VP   V8P    YP    
-     *                                                                                                                        
-     *                                                                                                                        
+     *                                        
+     *                                        
      */
 
 
@@ -235,20 +236,20 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
 
     if ( fpsconsole === true ) console.log('React Render - this._performance:', JSON.parse(JSON.stringify(this._performance)) );
 
-    const Banner = <FetchBanner 
+    const Banner = <FetchBannerX 
 
       // bonusHTML1={ 'BonusHTML1 Text' }
       panelPerformance={ this._performance }
       // bonusHTML2={ <div>BonusHTML2 Div</div> }
 
-      parentProps={ this.props }
+      bannerProps={ this.props.bannerProps }
       parentState={ this.state }
 
       nearBannerElementsArray={ [] }
       farBannerElementsArray={ farBannerElementsArray }
 
       contentPages={ this._contentPages }
-      WebPartHelpElement={ this._webPartHelpElement }
+      WebPartHelpPivots= { [ this._webPartHelpElement ] }
 
       // SpecialMessage = { Special }
 
@@ -287,7 +288,7 @@ export default class FpsCore115Banner extends React.Component<IFpsCore115BannerP
     );
   }
 
-  private _doSomething() {
+  private _doSomething(): void {
     const result = this._updatePerformance();
   }
 

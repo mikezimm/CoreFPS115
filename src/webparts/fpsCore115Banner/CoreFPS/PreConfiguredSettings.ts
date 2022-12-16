@@ -5,13 +5,14 @@
  *    88~~~   88~~~     `Y8b.      88~~~   88`8b   88~~~~~   `Y8b. 88~~~~~    88      `Y8b. 
  *    88      88      db   8D      88      88 `88. 88.     db   8D 88.        88    db   8D 
  *    YP      88      `8888Y'      88      88   YD Y88888P `8888Y' Y88888P    YP    `8888Y' 
- *                                                                                          
- *                                                                                          
+ *          
+ *          
  */
 
 // import { encrptMeOriginalTest } from '../fpsReferences';
 
-import { PresetFPSBanner, IPreConfigSettings, IAllPreConfigSettings } from '../fpsReferences';
+import { PresetFPSBanner, } from '../fpsMinIndex';
+import { IPreConfigSettings, IAllPreConfigSettings,  } from '../fpsMinIndex';
 
 
 /***
